@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://raw.githubusercontent.com/nextcloud/server/master/core/img/logo/logo.svg
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/nextcloud.png
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: cloud,storage,productivity,collaboration,office
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved performance & stability</li><li>Better mobile sync</li><li>Enhanced Office integration</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI refresh</li><li>New collaborative editing features</li><li>Advanced admin dashboard</li></ul>
@@ -21,8 +21,8 @@
     org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/nextcloud
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
-  title: Nextcloud by Sulla Labs
-  logo: https://raw.githubusercontent.com/nextcloud/server/master/core/img/logo/logo.svg
+  title: Nextcloud
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/nextcloud.png
   publisher: Sulla Labs
-  short_description: Nextcloud by Sulla Labs - Your own private cloud with file sync, calendar, notes, and collaboration.
+  short_description: Your own private cloud with file sync, calendar, notes, and collaboration.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/installation.yaml
