@@ -1,0 +1,40 @@
+services:
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    container_name: postiz
+    ports:
+      - "30240:3000"                    # Main web UI
+    volumes:
+      - postiz-data:/app/data
+    environment:
+      - TZ=America/Los_Angeles
+      - DATABASE_URL=postgresql://postiz:{{sullaServicePassword|urlencode}}@postiz-postgres:5432/postiz
+      - REDIS_URL=redis://host.docker.internal:30117
+      - IS_GENERAL=true
+      - DISABLE_REGISTRATION=false
+    depends_on:
+      postiz-postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postiz-postgres:
+    image: postgres:16-alpine
+    container_name: postiz-postgres
+    ports:
+      - "30241:5432"
+    environment:
+      - POSTGRES_DB=postiz
+      - POSTGRES_USER=postiz
+      - POSTGRES_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - postiz-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postiz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postiz-data:
+  postiz-postgres-data:
