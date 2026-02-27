@@ -1,0 +1,40 @@
+services:
+  nextcloud:
+    image: nextcloud:apache
+    container_name: nextcloud
+    ports:
+      - "30220:80"
+    volumes:
+      - nextcloud-data:/var/www/html
+      - {{path.documents}}/Nextcloud:/var/www/html/data
+    environment:
+      - TZ=America/Los_Angeles
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=30117
+    depends_on:
+      nextcloud-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  nextcloud-db:
+    image: mariadb:10.11
+    container_name: nextcloud-db
+    ports:
+      - "30221:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD={{sullaServicePassword}}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - nextcloud-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  nextcloud-data:
+  nextcloud-db-data:
