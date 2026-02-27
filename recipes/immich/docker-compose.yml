@@ -1,0 +1,55 @@
+
+services:
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:release
+    container_name: immich-server
+    ports:
+      - "30211:2283"
+    volumes:
+      - {{path.images}}/Immich:/usr/src/app/upload   # Uses your real Images folder
+    environment:
+      - IMMICH_HOST=0.0.0.0
+      - IMMICH_PORT=2283
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_PASSWORD={{sullaServicePassword}}
+      - DB_DATABASE_NAME=immich
+      - REDIS_HOSTNAME=host.docker.internal
+      - REDIS_PORT=30117
+    depends_on:
+      immich-postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:release
+    container_name: immich-machine-learning
+    volumes:
+      - immich-model-cache:/cache
+    environment:
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_PASSWORD={{sullaServicePassword}}
+      - DB_DATABASE_NAME=immich
+    restart: unless-stopped
+
+  immich-postgres:
+    image: postgres:16-alpine
+    container_name: immich-postgres
+    # No host port mapping — internal only (saves ports)
+    environment:
+      - POSTGRES_DB=immich
+      - POSTGRES_USER=immich
+      - POSTGRES_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - immich-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U immich"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  immich-model-cache:
+  immich-postgres-data:
