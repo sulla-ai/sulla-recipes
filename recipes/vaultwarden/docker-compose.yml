@@ -13,3 +13,6 @@ services:
       - SIGNUPS_ALLOWED=true
       - DOMAIN=http://localhost:30230
     restart: unless-stopped
+
+volumes:
+  vaultwarden-data:
