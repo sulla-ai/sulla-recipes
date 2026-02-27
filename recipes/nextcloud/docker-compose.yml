@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   nextcloud:
     image: nextcloud:apache
@@ -6,11 +8,25 @@ services:
       - "30220:80"
     volumes:
       - nextcloud-data:/var/www/html
-      - {{path.documents}}/Nextcloud:/var/www/html/data
+      - {{path.documents}}/Nextcloud:/var/www/html/data   # Your real Documents folder
     environment:
       - TZ=America/Los_Angeles
       - REDIS_HOST=host.docker.internal
       - REDIS_PORT=30117
+      
+      # Force MariaDB from first run (this eliminates the SQLite warning)
+      - MYSQL_HOST=nextcloud-db
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD={{sullaServicePassword}}
+      
+      # Auto-create admin account on first run
+      - NEXTCLOUD_ADMIN_USER={{sullaEmail}}
+      - NEXTCLOUD_ADMIN_PASSWORD={{sullaServicePassword}}
+      
+      # Recommended performance settings
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_UPLOAD_LIMIT=512M
     depends_on:
       nextcloud-db:
         condition: service_healthy
@@ -26,10 +42,11 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD={{sullaServicePassword}}
+      - MYSQL_INITDB_SKIP_TZINFO=1   # Faster startup
     volumes:
       - nextcloud-db-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p{{sullaServicePassword}}"]
       interval: 10s
       timeout: 5s
       retries: 5
