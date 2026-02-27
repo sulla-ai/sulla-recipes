@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    ports:
+      - "30230:80"                    # Web vault + API
+    volumes:
+      - vaultwarden-data:/data
+    environment:
+      - TZ=America/Los_Angeles
+      - SIGNUPS_ALLOWED=true
+      - DOMAIN=http://localhost:30230
+    restart: unless-stopped
