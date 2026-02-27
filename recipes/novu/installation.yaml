@@ -1,0 +1,23 @@
+id: novu
+name: Novu
+description: Open-source notification infrastructure — send emails, SMS, push, in-app, and chat messages from a single dashboard
+icon: novu.svg
+version: "2026.02"
+category: notifications
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Novu Dashboard"
+    url: "http://localhost:30250"
