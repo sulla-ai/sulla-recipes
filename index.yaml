@@ -59,7 +59,7 @@ plugins:
     containerd_compatible: true
     labels:
       com.docker.desktop.extension.api.version: 0.0.1
-      com.docker.extension.icon: https://poste.io/img/logo.svg
+      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/poste-io/poste-io.png
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: email,communication,productivity,server
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Updated Roundcube & Rspamd</li><li>Improved Let's Encrypt handling</li><li>Better mobile webmail experience</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance improvements</li><li>New admin dashboard widgets</li><li>Enhanced security defaults</li></ul>
@@ -76,8 +76,8 @@ plugins:
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/poste-io
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Poste.io by Sulla Labs
-    logo: https://poste.io/img/logo.svg
+    title: Poste.io E-mail
+    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/poste-io/poste-io.png
     publisher: Sulla Labs
     short_description: Poste.io by Sulla Labs - Simple all-in-one self-hosted mail server with beautiful webmail. Private alternative to Google Workspace.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/poste-io/installation.yaml
