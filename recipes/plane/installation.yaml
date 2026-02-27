@@ -1,0 +1,23 @@
+id: plane
+name: Plane
+description: Beautiful open-source project management tool — issues, cycles, modules, roadmaps (Jira / Linear alternative)
+icon: plane.svg
+version: "2026.02"
+category: project-management
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Plane Dashboard"
+    url: "http://localhost:30270"
