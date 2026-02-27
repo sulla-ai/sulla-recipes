@@ -110,30 +110,3 @@ plugins:
     short_description: Stirling-PDF by Sulla Labs - Full-featured local PDF editor, merger, converter & toolbox. Adobe replacement that stays private.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/stirling-pdf/installation.yaml
     
-  - slug: docker.io/sulla-ai/mailcow
-    version: 2.1.0
-    containerd_compatible: true
-    labels:
-      com.docker.desktop.extension.api.version: 0.0.1
-      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/cow_mailcow.svg
-      com.docker.extension.additional-urls: ""
-      com.docker.extension.categories: email,productivity,communication,server
-      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Updated to latest Rspamd + SOGo</li><li>Improved DKIM/DMARC handling</li><li>Better Let's Encrypt auto-renewal</li></ul><h4>2.0.0 (2 weeks ago)</h4><ul><li>Major performance & mobile webmail upgrades</li><li>New admin dashboard widgets</li><li>Enhanced backup & restore tools</li></ul>
-      com.docker.extension.detailed-description: Run your own professional, private email server with <strong>Mailcow by Sulla Labs</strong>.<br><br>Mailcow is the most popular full-featured Docker mail server suite. Turn your Sulla Desktop into a complete, self-hosted email infrastructure with webmail, admin panel, enterprise-grade spam/virus protection, and automatic SSL — all in one click.<br><br><strong>Features:</strong><ul><li>Full production mail stack (Postfix, Dovecot, SOGo webmail, Rspamd, ClamAV)</li><li>Beautiful modern responsive webmail interface</li><li>Powerful web-based admin dashboard</li><li>Automatic Let's Encrypt SSL certificates</li><li>Advanced anti-spam, antivirus & greylisting</li><li>Unlimited domains, mailboxes, aliases & forwarding</li><li>DKIM, DMARC, SPF, ARC, and S/MIME support</li><li>CalDAV/CardDAV + ActiveSync (mobile sync)</li><li>2FA, strong security defaults & resource quotas</li><li>Easy one-click backups & restores</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>Public domain with proper DNS records</li><li>4GB+ RAM recommended</li><li>Ports 25, 80, 443, 465, 993, 995 open</li></ul>
-      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
-      com.docker.extension.screenshots: ""
-      dev.chainguard.image.title: Mailcow Email Server
-      org.opencontainers.image.authors: Sulla Labs
-      org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Mailcow by Sulla Labs - Full-featured self-hosted Docker mail server
-      org.opencontainers.image.licenses: ""
-      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Mailcow by Sulla Labs
-      org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/mailcow
-      org.opencontainers.image.vendor: Sulla Labs
-      org.opencontainers.image.version: 2.1.0
-    title: Mailcow by Sulla Labs
-    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/cow_mailcow.svg
-    publisher: Sulla Labs
-    short_description: Mailcow by Sulla Labs - Professional self-hosted email server with webmail and full privacy
-    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/installation.yaml
