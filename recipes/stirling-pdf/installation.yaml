@@ -21,10 +21,6 @@ commands:
   update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
   logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
 
-# UI / Browser integration
-defaultPort: 30201
-openInBrowser: true
-
 # Optional extra URLs (for your tray menu or UI)
 extraUrls:
   - label: "Stirling-PDF Dashboard"
