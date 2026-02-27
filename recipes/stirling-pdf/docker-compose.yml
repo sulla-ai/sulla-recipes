@@ -5,12 +5,13 @@ services:
     image: stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     ports:
-      - "8080:8080"
+      - "30201:8080"
     volumes:
       - stirling-data:/configs
+      - ./custom:/custom
     environment:
       - SYSTEM_LANGUAGE=en-GB
-      - DOCKER_ENABLE_SECURITY=false   # Set to true if you want login protection
+      - DOCKER_ENABLE_SECURITY=false
     restart: unless-stopped
 
 volumes:
