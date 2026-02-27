@@ -12,6 +12,9 @@ services:
       - REDIS_URL=redis://host.docker.internal:30117
       - IS_GENERAL=true
       - DISABLE_REGISTRATION=false
+      - GRPC_PORT=7233
+      - AI_SERVICE_URL=http://localhost:7233
+      - QUEUE_CONNECTION=redis
     depends_on:
       postiz-postgres:
         condition: service_healthy
