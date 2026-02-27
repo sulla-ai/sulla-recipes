@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://postiz.com/logo.svg
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/postiz/postiz.svg
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: social-media,scheduling,marketing,automation
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved AI content generation</li><li>Better analytics dashboard</li><li>Added Bluesky & Threads support</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance upgrades</li><li>New bulk scheduling tools</li><li>Enhanced team collaboration</li></ul>
@@ -22,7 +22,7 @@
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
   title: Postiz
-  logo: https://postiz.com/logo.svg
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/postiz/postiz.svg
   publisher: Sulla Labs
   short_description: Postiz - Self-hosted AI-powered social media scheduler. Post to X, LinkedIn, Instagram, TikTok and more.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/postiz/installation.yaml
