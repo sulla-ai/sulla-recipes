@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://raw.githubusercontent.com/home-assistant/brand/master/core/icon/icon.svg
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/home-assistant/smartthings.avif
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: smart-home,automation,iot,home
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved Matter & Thread support</li><li>Better energy dashboard</li><li>Enhanced mobile app integration</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI refresh</li><li>New voice assistant features</li><li>Advanced automation editor</li></ul>
@@ -22,7 +22,7 @@
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
   title: Home Assistant by Sulla Labs
-  logo: https://raw.githubusercontent.com/home-assistant/brand/master/core/icon/icon.svg
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/home-assistant/smartthings.avif
   publisher: Sulla Labs
   short_description: Home Assistant by Sulla Labs - The ultimate open-source smart home platform. Full local control and SmartThings integration.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/home-assistant/installation.yaml
