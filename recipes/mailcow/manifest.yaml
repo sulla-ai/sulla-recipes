@@ -25,3 +25,4 @@
   logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/cow_mailcow.svg
   publisher: Sulla Labs
   short_description: Mailcow by Sulla Labs - Professional self-hosted email server with webmail and full privacy
+  installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/installation.yaml
