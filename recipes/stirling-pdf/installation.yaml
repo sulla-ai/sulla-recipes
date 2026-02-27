@@ -1,0 +1,34 @@
+id: stirling-pdf
+name: Stirling-PDF
+description: Full-featured open-source PDF toolbox - merge, split, compress, OCR, sign, convert, watermark, and edit PDFs locally (best private Adobe Acrobat alternative)
+icon: stirling-pdf.svg
+version: "2026.02"
+category: productivity
+# Official upstream compose from Stirling-Tools repo
+compose:
+  repo: "https://github.com/Stirling-Tools/Stirling-PDF.git"
+  branch: "main"
+  composeFile: "docker/compose/docker-compose.yml"
+# Setup steps (RecipeRunner will run these)
+setup:
+  - type: git-clone
+# Commands your RecipeRunner uses
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "git pull && docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+# UI / Browser integration
+defaultPort: 8080
+openInBrowser: true
+# Optional extra URLs
+extraUrls:
+  - label: "Stirling-PDF Dashboard"
+    url: "http://localhost:8080"
+# Optional environment variables your runner can inject
+env:
+  SECURITY_ENABLELOGIN: "false"
+  SYSTEM_DEFAULTLOCALE: "en-US"
+  UI_APPNAME: "Stirling-PDF"
