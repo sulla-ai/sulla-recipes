@@ -11,9 +11,9 @@ services:
     environment:
       NODE_PORT: 3000
       SERVER_URL: "http://localhost:30207"
-      PG_DATABASE_URL: postgres://twenty:twenty_dev_password@twenty-postgres:5432/twenty
+      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword}}@twenty-postgres:5432/twenty
       REDIS_URL: redis://host.docker.internal:30117
-      APP_SECRET: "changeMeToA32CharRandomString1234"
+      APP_SECRET: "{{sullaN8nEncryptionKey}}"
       STORAGE_TYPE: local
     depends_on:
       twenty-postgres:
@@ -27,9 +27,9 @@ services:
     volumes:
       - twenty-server-data:/app/packages/twenty-server/.local-storage
     environment:
-      PG_DATABASE_URL: postgres://twenty:twenty_dev_password@twenty-postgres:5432/twenty
+      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword}}@twenty-postgres:5432/twenty
       REDIS_URL: redis://host.docker.internal:30117
-      APP_SECRET: "changeMeToA32CharRandomString1234"
+      APP_SECRET: "{{sullaN8nEncryptionKey}}"
       STORAGE_TYPE: local
     depends_on:
       server:
@@ -44,7 +44,7 @@ services:
     environment:
       POSTGRES_DB: twenty
       POSTGRES_USER: twenty
-      POSTGRES_PASSWORD: twenty_dev_password
+      POSTGRES_PASSWORD: {{sullaServicePassword}}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - twenty-postgres-data:/var/lib/postgresql/data
