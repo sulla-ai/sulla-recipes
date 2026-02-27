@@ -1,0 +1,23 @@
+id: appflowy
+name: AppFlowy
+description: Open-source Notion alternative — beautiful workspace with databases, documents, AI, and real-time collaboration
+icon: appflowy.svg
+version: "2026.02"
+category: productivity
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "AppFlowy Workspace"
+    url: "http://localhost:30260"
