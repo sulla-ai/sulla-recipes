@@ -11,6 +11,7 @@ services:
       - ./custom:/custom
     environment:
       - SYSTEM_LANGUAGE=en-GB
+      - SECURITY_ENABLELOGIN=true
       - DOCKER_ENABLE_SECURITY=false
     restart: unless-stopped
 
