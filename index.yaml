@@ -1,3 +1,7 @@
 version: "1"
 generated_at: ""
-plugins: []
+plugins:
+  - name: Mailcow by Sulla Labs
+    description: Professional self-hosted email server with webmail and full privacy
+    icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/mailcow/cow_mailcow.svg
+    folder: mailcow
