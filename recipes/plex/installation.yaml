@@ -22,4 +22,4 @@ openInBrowser: true
 
 extraUrls:
   - label: "Plex Web"
-    url: "http://localhost:30210"
+    url: "http://localhost:30210/web"
