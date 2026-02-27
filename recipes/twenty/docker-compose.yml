@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  server:
+    image: twentycrm/twenty:latest
+    container_name: twenty-server
+    ports:
+      - "30207:3000"
+    volumes:
+      - twenty-server-data:/app/packages/twenty-server/.local-storage
+    environment:
+      NODE_PORT: 3000
+      SERVER_URL: "http://localhost:30207"
+      PG_DATABASE_URL: postgres://twenty:twenty_dev_password@twenty-postgres:5432/twenty
+      REDIS_URL: redis://host.docker.internal:30117
+      APP_SECRET: "changeMeToA32CharRandomString1234"
+      STORAGE_TYPE: local
+    depends_on:
+      twenty-postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    image: twentycrm/twenty:latest
+    container_name: twenty-worker
+    command: ["yarn", "worker:prod"]
+    volumes:
+      - twenty-server-data:/app/packages/twenty-server/.local-storage
+    environment:
+      PG_DATABASE_URL: postgres://twenty:twenty_dev_password@twenty-postgres:5432/twenty
+      REDIS_URL: redis://host.docker.internal:30117
+      APP_SECRET: "changeMeToA32CharRandomString1234"
+      STORAGE_TYPE: local
+    depends_on:
+      server:
+        condition: service_healthy
+    restart: unless-stopped
+
+  \postgres:
+    image: postgres:16-alpine
+    container_name: twenty-postgres
+    ports:
+      - "30208:5432"
+    environment:
+      POSTGRES_DB: twenty
+      POSTGRES_USER: twenty
+      POSTGRES_PASSWORD: twenty_dev_password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - twenty-postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U twenty"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  twenty-server-data:
+  twenty-postgres-data:
