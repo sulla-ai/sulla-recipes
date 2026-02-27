@@ -1,7 +1,7 @@
 id: poste-io
 name: Poste.io
 description: Simple all-in-one mail server with webmail, admin panel, anti-spam, antivirus, and automatic Let's Encrypt (great private alternative to Google Workspace / Microsoft 365)
-icon: poste-io.svg
+icon: poste-io.png
 version: "2026.02"
 category: email
 
