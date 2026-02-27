@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - "8080:8080"
+    volumes:
+      - stirling-data:/configs
+    environment:
+      - SYSTEM_LANGUAGE=en-GB
+      - DOCKER_ENABLE_SECURITY=false   # Set to true if you want login protection
+    restart: unless-stopped
+
+volumes:
+  stirling-data:
