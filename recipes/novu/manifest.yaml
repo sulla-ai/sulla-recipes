@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://raw.githubusercontent.com/novuhq/novu/main/apps/web/public/static/images/logo.svg
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/novu/novu.png
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: notifications,developer-tools,automation,marketing
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved email & SMS providers</li><li>Better activity feed</li><li>Enhanced webhook support</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance improvements</li><li>New in-app notifications UI</li><li>Advanced analytics</li></ul>
@@ -22,7 +22,7 @@
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
   title: Novu
-  logo: https://raw.githubusercontent.com/novuhq/novu/main/apps/web/public/static/images/logo.svg
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/novu/novu.png
   publisher: Sulla Labs
   short_description: Novu - Open-source notification infrastructure. Send emails, SMS, push & in-app messages from one dashboard.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/novu/installation.yaml
