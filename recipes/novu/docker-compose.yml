@@ -1,0 +1,51 @@
+services:
+  novu-api:
+    image: ghcr.io/novuhq/novu/api:latest
+    container_name: novu-api
+    ports:
+      - "30250:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URL=mongodb://novu-mongo:27017/novu
+      - REDIS_URL=redis://host.docker.internal:30117
+      - JWT_SECRET={{sullaN8nEncryptionKey}}
+      - STORE_ENCRYPTION_KEY={{sullaN8nEncryptionKey}}
+    depends_on:
+      novu-mongo:
+        condition: service_healthy
+    restart: unless-stopped
+
+  novu-web:
+    image: ghcr.io/novuhq/novu/web:latest
+    container_name: novu-web
+    environment:
+      - REACT_APP_API_URL=http://localhost:30250
+    restart: unless-stopped
+
+  novu-worker:
+    image: ghcr.io/novuhq/novu/worker:latest
+    container_name: novu-worker
+    environment:
+      - MONGO_URL=mongodb://novu-mongo:27017/novu
+      - REDIS_URL=redis://host.docker.internal:30117
+    depends_on:
+      novu-api:
+        condition: service_started
+    restart: unless-stopped
+
+  novu-mongo:
+    image: mongo:7
+    container_name: novu-mongo
+    ports:
+      - "30251:27017"
+    volumes:
+      - novu-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  novu-mongo-data:
