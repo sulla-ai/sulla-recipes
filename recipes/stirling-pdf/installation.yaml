@@ -14,12 +14,12 @@ setup: []
 
 # Commands your RecipeRunner uses
 commands:
-  start: "docker compose -f ${COMPOSE_FILE} up -d"
-  stop: "docker compose -f ${COMPOSE_FILE} down"
-  restart: "docker compose -f ${COMPOSE_FILE} restart"
-  status: "docker compose -f ${COMPOSE_FILE} ps"
-  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
-  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+  start: "docker compose -f docker-compose.yml up -d"
+  stop: "docker compose -f docker-compose.yml down"
+  restart: "docker compose -f docker-compose.yml restart"
+  status: "docker compose -f docker-compose.yml ps"
+  update: "docker compose -f docker-compose.yml pull && docker compose -f docker-compose.yml up -d"
+  logs: "docker compose -f docker-compose.yml logs --tail=100"
 
 # Optional extra URLs (for your tray menu or UI)
 extraUrls:
