@@ -1,0 +1,27 @@
+id: poste-io
+name: Poste.io
+description: Simple all-in-one mail server with webmail, admin panel, anti-spam, antivirus, and automatic Let's Encrypt (great private alternative to Google Workspace / Microsoft 365)
+icon: poste-io.svg
+version: "2026.02"
+category: email
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+openInBrowser: true
+
+extraUrls:
+  - label: "Poste.io Admin Panel"
+    url: "http://localhost:30203"
+  - label: "Roundcube Webmail"
+    url: "http://localhost:30203"
