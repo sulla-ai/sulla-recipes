@@ -1,44 +1,43 @@
-version: "3.8"
 
 services:
-  server:
+  twenty-crm-server:
     image: twentycrm/twenty:latest
-    container_name: twenty-server
+    container_name: twenty-crm-server
     ports:
       - "30207:3000"
     volumes:
-      - twenty-server-data:/app/packages/twenty-server/.local-storage
+      - twenty-crm-server-data:/app/packages/twenty-server/.local-storage
     environment:
       NODE_PORT: 3000
       SERVER_URL: "http://localhost:30207"
-      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword|urlencode}}@twenty-postgres:5432/twenty
+      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword|urlencode}}@twenty-crm-postgres:5432/twenty
       REDIS_URL: redis://host.docker.internal:30117
       APP_SECRET: "{{sullaN8nEncryptionKey}}"
       STORAGE_TYPE: local
     depends_on:
-      twenty-postgres:
+      twenty-crm-postgres:
         condition: service_healthy
     restart: unless-stopped
 
-  worker:
+  twenty-crm-worker:
     image: twentycrm/twenty:latest
-    container_name: twenty-worker
+    container_name: twenty-crm-worker
     command: ["yarn", "worker:prod"]
     volumes:
-      - twenty-server-data:/app/packages/twenty-server/.local-storage
+      - twenty-crm-server-data:/app/packages/twenty-server/.local-storage
     environment:
-      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword|urlencode}}@twenty-postgres:5432/twenty
+      PG_DATABASE_URL: postgres://twenty:{{sullaServicePassword|urlencode}}@twenty-crm-postgres:5432/twenty
       REDIS_URL: redis://host.docker.internal:30117
       APP_SECRET: "{{sullaN8nEncryptionKey}}"
       STORAGE_TYPE: local
     depends_on:
-      server:
+      twenty-crm-server:
         condition: service_healthy
     restart: unless-stopped
 
-  postgres:
+  twenty-crm-postgres:
     image: postgres:16-alpine
-    container_name: twenty-postgres
+    container_name: twenty-crm-postgres
     ports:
       - "30208:5432"
     environment:
@@ -47,7 +46,7 @@ services:
       POSTGRES_PASSWORD: {{sullaServicePassword}}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - twenty-postgres-data:/var/lib/postgresql/data
+      - twenty-crm-postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U twenty"]
@@ -56,5 +55,5 @@ services:
       retries: 5
 
 volumes:
-  twenty-server-data:
-  twenty-postgres-data:
+  twenty-crm-server-data:
+  twenty-crm-postgres-data:
