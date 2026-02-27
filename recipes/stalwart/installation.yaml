@@ -1,0 +1,34 @@
+id: stalwart
+name: Stalwart
+description: Modern all-in-one mail & collaboration server (JMAP, IMAP, SMTP, CalDAV, CardDAV, WebDAV) — secure, fast, and written in Rust
+icon: stalwart.svg
+version: "2026.02"
+category: email
+
+# Pure Docker image — no git clone required
+compose:
+  composeFile: "docker-compose.yml"
+
+# No setup steps — Stalwart auto-generates config on first run
+setup: []
+
+# Commands your RecipeRunner uses
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=200 | grep -E 'administrator account|password|Admin password'"
+
+openInBrowser: true
+
+extraUrls:
+  - label: "Stalwart Web Admin"
+    url: "http://localhost:30205"
+  - label: "Webmail (JMAP)"
+    url: "http://localhost:30205"
+
+# Optional environment variables
+env:
+  TZ: "America/Los_Angeles"
