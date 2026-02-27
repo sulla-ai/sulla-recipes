@@ -1,6 +1,35 @@
 version: "1"
 generated_at: ""
 plugins:
+  - slug: docker.io/sulla-ai/nextcloud
+    version: 2.1.0
+    containerd_compatible: true
+    labels:
+      com.docker.desktop.extension.api.version: 0.0.1
+      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/nextcloud.png
+      com.docker.extension.additional-urls: ""
+      com.docker.extension.categories: cloud,storage,productivity,collaboration,office
+      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved performance & stability</li><li>Better mobile sync</li><li>Enhanced Office integration</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI refresh</li><li>New collaborative editing features</li><li>Advanced admin dashboard</li></ul>
+      com.docker.extension.detailed-description: Your own private cloud.<br><br><strong>Nextcloud </strong> is the most popular open-source alternative to Dropbox, Google Drive, OneDrive, and Office 365.<br><br>Store files, sync across devices, collaborate in real-time, manage calendar, contacts, notes, and more — all running on your own machine with full privacy.<br><br><strong>Features:</strong><ul><li>File sync & share (like Dropbox)</li><li>Real-time collaborative editing (like Google Docs)</li><li>Calendar, Contacts & Mail</li><li>Notes, Tasks & Deck (Kanban)</li><li>Photo gallery & video streaming</li><li>End-to-end encryption option</li><li>Powerful mobile apps</li><li>Thousands of apps available</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>8GB+ RAM recommended</li><li>Port 30220 available</li></ul>
+      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
+      com.docker.extension.screenshots: ""
+      dev.chainguard.image.title: Nextcloud
+      org.opencontainers.image.authors: Sulla Labs
+      org.opencontainers.image.created: 2026-02-27T00:00:00Z
+      org.opencontainers.image.description: Nextcloud  - Your private cloud platform (Dropbox + Office 365 alternative)
+      org.opencontainers.image.licenses: ""
+      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
+      org.opencontainers.image.title: Nextcloud 
+      org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/nextcloud
+      org.opencontainers.image.vendor: Sulla Labs
+      org.opencontainers.image.version: 2.1.0
+    title: Nextcloud
+    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/nextcloud.png
+    publisher: Sulla Labs
+    short_description: Your own private cloud with file sync, calendar, notes, and collaboration.
+    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/installation.yaml
+  
+
   - slug: docker.io/alancarvalho/voice-ai
     version: 2.1.0
     containerd_compatible: true
@@ -40,18 +69,18 @@ plugins:
       dev.chainguard.package.main: ""
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-01-20T16:00:00Z
-      org.opencontainers.image.description: AI Voice Receptionist by Sulla Labs -
+      org.opencontainers.image.description: AI Voice Receptionist  -
         Transform your Sulla Desktop into a professional AI receptionist
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/voice-ai
-      org.opencontainers.image.title: AI Voice Receptionist by Sulla Labs
+      org.opencontainers.image.title: AI Voice Receptionist 
       org.opencontainers.image.url: https://hub.docker.com/r/alancarvalho/voice-ai
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: AI Voice Receptionist by Sulla Labs
+    title: AI Voice Receptionist 
     logo: https://raw.githubusercontent.com/sulla-ai/sulla-desktop/main/pkg/rancher-desktop/assets/images/voice-ai.svg
     publisher: Sulla Labs
-    short_description: AI Voice Receptionist by Sulla Labs - Transform your Sulla
+    short_description: AI Voice Receptionist  - Transform your Sulla
       Desktop into a professional AI receptionist
 
   - slug: docker.io/sulla-ai/twenty
@@ -63,23 +92,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: crm,business,productivity,sales
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved pipeline & activity views</li><li>Better mobile experience</li><li>Enhanced search & filtering</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI overhaul</li><li>Full calendar integration</li><li>Advanced permissions system</li></ul>
-      com.docker.extension.detailed-description: The modern open-source CRM.<br><br><strong>Twenty by Sulla Labs</strong> is a beautiful, powerful, self-hosted CRM that feels like a mix of Notion + Linear + Salesforce — but fully private and open source.<br><br>Perfect for teams who want full control over their customer data without paying huge SaaS fees.<br><br><strong>Features:</strong><ul><li>Beautiful modern UI (Notion-style)</li><li>Powerful pipelines & deal tracking</li><li>Activities, tasks & notes</li><li>Calendar & email integration</li><li>Companies, people & opportunities</li><li>Full-text search & filters</li><li>Team workspaces & permissions</li><li>Self-hosted — your data stays yours</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Port 30207 available</li></ul>
+      com.docker.extension.detailed-description: The modern open-source CRM.<br><br><strong>Twenty </strong> is a beautiful, powerful, self-hosted CRM that feels like a mix of Notion + Linear + Salesforce — but fully private and open source.<br><br>Perfect for teams who want full control over their customer data without paying huge SaaS fees.<br><br><strong>Features:</strong><ul><li>Beautiful modern UI (Notion-style)</li><li>Powerful pipelines & deal tracking</li><li>Activities, tasks & notes</li><li>Calendar & email integration</li><li>Companies, people & opportunities</li><li>Full-text search & filters</li><li>Team workspaces & permissions</li><li>Self-hosted — your data stays yours</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Port 30207 available</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Twenty CRM
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Twenty by Sulla Labs - Beautiful open-source CRM. Private alternative to Salesforce & HubSpot.
+      org.opencontainers.image.description: Twenty  - Beautiful open-source CRM. Private alternative to Salesforce & HubSpot.
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Twenty CRM by Sulla Labs
+      org.opencontainers.image.title: Twenty CRM 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/twenty
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Twenty CRM by Sulla Labs
+    title: Twenty CRM 
     logo: https://github.com/twentyhq/twenty/raw/main/packages/twenty-website/public/images/core/logo.svg
     publisher: Sulla Labs
-    short_description: Twenty CRM by Sulla Labs - Beautiful modern open-source CRM. Full control over your customer data.
+    short_description: Twenty CRM  - Beautiful modern open-source CRM. Full control over your customer data.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/twenty/installation.yaml
     
   - slug: docker.io/sulla-ai/poste-io
@@ -91,23 +120,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: email,communication,productivity,server
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Updated Roundcube & Rspamd</li><li>Improved Let's Encrypt handling</li><li>Better mobile webmail experience</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance improvements</li><li>New admin dashboard widgets</li><li>Enhanced security defaults</li></ul>
-      com.docker.extension.detailed-description: The easiest way to run your own professional email server.<br><br><strong>Poste.io by Sulla Labs</strong> is a clean, all-in-one Docker mail server that gives you everything Google Workspace or Microsoft 365 offers — but 100% private and self-hosted.<br><br>Includes Roundcube webmail, powerful admin panel, Rspamd anti-spam, ClamAV antivirus, automatic Let's Encrypt SSL, and full IMAP/SMTP support.<br><br><strong>Features:</strong><ul><li>Beautiful Roundcube webmail (mobile-friendly)</li><li>Easy web-based admin panel</li><li>Built-in Rspamd + ClamAV protection</li><li>Automatic Let's Encrypt certificates</li><li>Unlimited domains, mailboxes & aliases</li><li>DKIM, SPF, DMARC, and ARC support</li><li>CalDAV & CardDAV sync</li><li>One-click backups & restore</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>Your own domain name</li><li>4GB+ RAM recommended</li><li>Ports 25, 80, 443, 465, 587, 993 open</li></ul>
+      com.docker.extension.detailed-description: The easiest way to run your own professional email server.<br><br><strong>Poste.io </strong> is a clean, all-in-one Docker mail server that gives you everything Google Workspace or Microsoft 365 offers — but 100% private and self-hosted.<br><br>Includes Roundcube webmail, powerful admin panel, Rspamd anti-spam, ClamAV antivirus, automatic Let's Encrypt SSL, and full IMAP/SMTP support.<br><br><strong>Features:</strong><ul><li>Beautiful Roundcube webmail (mobile-friendly)</li><li>Easy web-based admin panel</li><li>Built-in Rspamd + ClamAV protection</li><li>Automatic Let's Encrypt certificates</li><li>Unlimited domains, mailboxes & aliases</li><li>DKIM, SPF, DMARC, and ARC support</li><li>CalDAV & CardDAV sync</li><li>One-click backups & restore</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>Your own domain name</li><li>4GB+ RAM recommended</li><li>Ports 25, 80, 443, 465, 587, 993 open</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Poste.io Mail Server
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Poste.io by Sulla Labs - Simple all-in-one self-hosted mail server with webmail and full privacy
+      org.opencontainers.image.description: Poste.io  - Simple all-in-one self-hosted mail server with webmail and full privacy
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Poste.io by Sulla Labs
+      org.opencontainers.image.title: Poste.io 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/poste-io
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
     title: Poste.io E-mail
     logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/poste-io/poste-io.png
     publisher: Sulla Labs
-    short_description: Poste.io by Sulla Labs - Simple all-in-one self-hosted mail server with beautiful webmail. Private alternative to Google Workspace.
+    short_description: Poste.io  - Simple all-in-one self-hosted mail server with beautiful webmail. Private alternative to Google Workspace.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/poste-io/installation.yaml
 
   - slug: docker.io/sulla-ai/stalwart
@@ -119,23 +148,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: email,communication,productivity,server
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved JMAP performance</li><li>Better mobile webmail experience</li><li>Enhanced security defaults</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI overhaul</li><li>Full CalDAV & CardDAV support</li><li>Enterprise-ready features</li></ul>
-      com.docker.extension.detailed-description: The modern, secure, high-performance mail & collaboration server.<br><br><strong>Stalwart by Sulla Labs</strong> is a next-generation, Rust-based mail server that supports JMAP, IMAP, SMTP, CalDAV, CardDAV, and WebDAV — all in one clean, lightweight package.<br><br>Built for privacy and performance. No legacy bloat. Perfect for users who want a powerful self-hosted email + calendar solution.<br><br><strong>Features:</strong><ul><li>Modern JMAP protocol (future of email)</li><li>Full IMAP/SMTP with excellent compatibility</li><li>Built-in CalDAV & CardDAV (calendar + contacts)</li><li>Beautiful web admin panel</li><li>Webmail client included</li><li>Advanced anti-spam & security</li><li>Extremely fast and lightweight (Rust)</li><li>Automatic config generation</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>Your own domain (optional for local use)</li><li>2GB+ RAM recommended</li><li>Ports 25, 143, 993, 587, 465, 8080 open</li></ul>
+      com.docker.extension.detailed-description: The modern, secure, high-performance mail & collaboration server.<br><br><strong>Stalwart </strong> is a next-generation, Rust-based mail server that supports JMAP, IMAP, SMTP, CalDAV, CardDAV, and WebDAV — all in one clean, lightweight package.<br><br>Built for privacy and performance. No legacy bloat. Perfect for users who want a powerful self-hosted email + calendar solution.<br><br><strong>Features:</strong><ul><li>Modern JMAP protocol (future of email)</li><li>Full IMAP/SMTP with excellent compatibility</li><li>Built-in CalDAV & CardDAV (calendar + contacts)</li><li>Beautiful web admin panel</li><li>Webmail client included</li><li>Advanced anti-spam & security</li><li>Extremely fast and lightweight (Rust)</li><li>Automatic config generation</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>Your own domain (optional for local use)</li><li>2GB+ RAM recommended</li><li>Ports 25, 143, 993, 587, 465, 8080 open</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Stalwart Mail Server
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Stalwart by Sulla Labs - Modern Rust-based mail & collaboration server (JMAP + IMAP + CalDAV)
+      org.opencontainers.image.description: Stalwart  - Modern Rust-based mail & collaboration server (JMAP + IMAP + CalDAV)
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Stalwart by Sulla Labs
+      org.opencontainers.image.title: Stalwart 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/stalwart
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Stalwart by Sulla Labs
+    title: Stalwart 
     logo: https://raw.githubusercontent.com/stalwartlabs/stalwart/main/img/logo-red.svg
     publisher: Sulla Labs
-    short_description: Stalwart by Sulla Labs - Modern, fast, Rust-based mail & collaboration server with JMAP, IMAP, and calendar support.
+    short_description: Stalwart  - Modern, fast, Rust-based mail & collaboration server with JMAP, IMAP, and calendar support.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/stalwart/installation.yaml
 
   - slug: docker.io/sulla-ai/plex
@@ -147,23 +176,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: media,entertainment,streaming
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Updated to latest Plex Media Server</li><li>Improved hardware transcoding support</li><li>Better subtitle handling</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance improvements</li><li>New dashboard widgets</li><li>Enhanced remote access</li></ul>
-      com.docker.extension.detailed-description: Your personal media server.<br><br><strong>Plex by Sulla Labs</strong> turns your media collection into a beautiful, Netflix-style streaming service that works on every device — phones, TVs, computers, tablets.<br><br>Stream your movies, TV shows, music, and photos with powerful transcoding, subtitles, and remote access.<br><br><strong>Features:</strong><ul><li>Beautiful modern interface</li><li>Hardware-accelerated transcoding</li><li>Live TV & DVR (with tuner)</li><li>Powerful media library management</li><li>Sync & offline playback</li><li>Shared libraries with friends/family</li><li>Works on all your devices</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Good CPU/GPU for transcoding</li><li>Port 30210 available</li></ul>
+      com.docker.extension.detailed-description: Your personal media server.<br><br><strong>Plex </strong> turns your media collection into a beautiful, Netflix-style streaming service that works on every device — phones, TVs, computers, tablets.<br><br>Stream your movies, TV shows, music, and photos with powerful transcoding, subtitles, and remote access.<br><br><strong>Features:</strong><ul><li>Beautiful modern interface</li><li>Hardware-accelerated transcoding</li><li>Live TV & DVR (with tuner)</li><li>Powerful media library management</li><li>Sync & offline playback</li><li>Shared libraries with friends/family</li><li>Works on all your devices</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Good CPU/GPU for transcoding</li><li>Port 30210 available</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Plex Media Server
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Plex by Sulla Labs - Your personal media streaming server
+      org.opencontainers.image.description: Plex  - Your personal media streaming server
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Plex Media Server by Sulla Labs
+      org.opencontainers.image.title: Plex Media Server 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/plex
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Plex Media Server by Sulla Labs
+    title: Plex Media Server 
     logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plex/plex.png
     publisher: Sulla Labs
-    short_description: Plex by Sulla Labs - Turn your media collection into a beautiful streaming service for all your devices.
+    short_description: Plex  - Turn your media collection into a beautiful streaming service for all your devices.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plex/installation.yaml
 
   - slug: docker.io/sulla-ai/immich
@@ -175,23 +204,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: media,photos,backup,privacy
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved mobile backup speed</li><li>Better AI search & face recognition</li><li>Enhanced timeline view</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major performance upgrades</li><li>New sharing features</li><li>Advanced metadata editing</li></ul>
-      com.docker.extension.detailed-description: Your private Google Photos replacement.<br><br><strong>Immich by Sulla Labs</strong> is a high-performance, self-hosted photo and video backup solution that gives you full ownership of your memories.<br><br>Automatic phone backups, beautiful timeline, powerful AI search, facial recognition, and albums — all running on your own machine.<br><br><strong>Features:</strong><ul><li>Automatic phone backup (iOS & Android)</li><li>Beautiful timeline & album views</li><li>AI-powered search & facial recognition</li><li>Shared albums & partner sharing</li><li>Full-resolution original backups</li><li>Live photos & video support</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>8GB+ RAM recommended (for AI features)</li><li>Port 30211 available</li></ul>
+      com.docker.extension.detailed-description: Your private Google Photos replacement.<br><br><strong>Immich </strong> is a high-performance, self-hosted photo and video backup solution that gives you full ownership of your memories.<br><br>Automatic phone backups, beautiful timeline, powerful AI search, facial recognition, and albums — all running on your own machine.<br><br><strong>Features:</strong><ul><li>Automatic phone backup (iOS & Android)</li><li>Beautiful timeline & album views</li><li>AI-powered search & facial recognition</li><li>Shared albums & partner sharing</li><li>Full-resolution original backups</li><li>Live photos & video support</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>8GB+ RAM recommended (for AI features)</li><li>Port 30211 available</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Immich
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Immich by Sulla Labs - Self-hosted Google Photos alternative with automatic phone backup
+      org.opencontainers.image.description: Immich  - Self-hosted Google Photos alternative with automatic phone backup
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Immich by Sulla Labs
+      org.opencontainers.image.title: Immich 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/immich
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Immich by Sulla Labs
+    title: Immich 
     logo: https://github.com/immich-app/immich/raw/main/design/immich-logo-stacked-light.svg
     publisher: Sulla Labs
-    short_description: Immich by Sulla Labs - Private Google Photos alternative with automatic phone backup and AI search.
+    short_description: Immich  - Private Google Photos alternative with automatic phone backup and AI search.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/immich/installation.yaml
     
   - slug: docker.io/sulla-ai/stirling-pdf
@@ -203,23 +232,23 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: productivity,documents,utilities
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved OCR accuracy</li><li>Faster PDF compression</li><li>Dark mode fixes & mobile improvements</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Complete UI overhaul</li><li>New AI-powered features</li><li>Enterprise security hardening</li></ul>
-      com.docker.extension.detailed-description: The #1 open-source PDF tool on GitHub. <strong>Stirling-PDF by Sulla Labs</strong> gives you a full Adobe Acrobat replacement that runs 100% locally in your browser — no uploads, no limits, no subscriptions.<br><br>Edit, merge, split, convert, compress, sign, OCR, watermark, rotate, and do dozens more operations on PDFs instantly and privately.<br><br><strong>Features:</strong><ul><li>Merge, split, rotate & reorder pages</li><li>Compress & optimize PDFs dramatically</li><li>OCR on scanned documents</li><li>Digital signatures & certificates</li><li>Convert to/from Word, Excel, images, etc.</li><li>Add/remove watermarks & stamps</li><li>Redact sensitive information</li><li>Beautiful modern web UI (mobile friendly)</li><li>Dark mode + customizable</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>1GB+ RAM recommended</li><li>Port 8080 available</li></ul>
+      com.docker.extension.detailed-description: The #1 open-source PDF tool on GitHub. <strong>Stirling-PDF </strong> gives you a full Adobe Acrobat replacement that runs 100% locally in your browser — no uploads, no limits, no subscriptions.<br><br>Edit, merge, split, convert, compress, sign, OCR, watermark, rotate, and do dozens more operations on PDFs instantly and privately.<br><br><strong>Features:</strong><ul><li>Merge, split, rotate & reorder pages</li><li>Compress & optimize PDFs dramatically</li><li>OCR on scanned documents</li><li>Digital signatures & certificates</li><li>Convert to/from Word, Excel, images, etc.</li><li>Add/remove watermarks & stamps</li><li>Redact sensitive information</li><li>Beautiful modern web UI (mobile friendly)</li><li>Dark mode + customizable</li><li>Zero data leaves your machine</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>1GB+ RAM recommended</li><li>Port 8080 available</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Stirling-PDF
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Stirling-PDF by Sulla Labs - Local PDF editor, merger, converter & toolbox. Replace Adobe forever.
+      org.opencontainers.image.description: Stirling-PDF  - Local PDF editor, merger, converter & toolbox. Replace Adobe forever.
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Stirling-PDF by Sulla Labs
+      org.opencontainers.image.title: Stirling-PDF 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/stirling-pdf
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Stirling-PDF by Sulla Labs
+    title: Stirling-PDF 
     logo: https://raw.githubusercontent.com/Stirling-Tools/Stirling-PDF/main/docs/stirling.svg
     publisher: Sulla Labs
-    short_description: Stirling-PDF by Sulla Labs - Full-featured local PDF editor, merger, converter & toolbox. Adobe replacement that stays private.
+    short_description: Stirling-PDF  - Full-featured local PDF editor, merger, converter & toolbox. Adobe replacement that stays private.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/stirling-pdf/installation.yaml
       
   - slug: docker.io/sulla-ai/home-assistant
@@ -231,21 +260,21 @@ plugins:
       com.docker.extension.additional-urls: ""
       com.docker.extension.categories: smart-home,automation,iot,home
       com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved Matter & Thread support</li><li>Better energy dashboard</li><li>Enhanced mobile app integration</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI refresh</li><li>New voice assistant features</li><li>Advanced automation editor</li></ul>
-      com.docker.extension.detailed-description: The #1 open-source smart home platform.<br><br><strong>Home Assistant by Sulla Labs</strong> is the most powerful way to take back control of your smart home. It works with thousands of devices (including SmartThings, Philips Hue, Zigbee, Z-Wave, Matter, etc.) and runs completely locally.<br><br><strong>Features:</strong><ul><li>Beautiful dashboard & mobile apps</li><li>Powerful automations & scripts</li><li>Works with SmartThings devices</li><li>Voice control (Alexa/Google compatible)</li><li>Energy monitoring & solar integration</li><li>Camera & security support</li><li>100% local & private</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Port 30215 available</li></ul>
+      com.docker.extension.detailed-description: The #1 open-source smart home platform.<br><br><strong>Home Assistant </strong> is the most powerful way to take back control of your smart home. It works with thousands of devices (including SmartThings, Philips Hue, Zigbee, Z-Wave, Matter, etc.) and runs completely locally.<br><br><strong>Features:</strong><ul><li>Beautiful dashboard & mobile apps</li><li>Powerful automations & scripts</li><li>Works with SmartThings devices</li><li>Voice control (Alexa/Google compatible)</li><li>Energy monitoring & solar integration</li><li>Camera & security support</li><li>100% local & private</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Port 30215 available</li></ul>
       com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
       com.docker.extension.screenshots: ""
       dev.chainguard.image.title: Home Assistant
       org.opencontainers.image.authors: Sulla Labs
       org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: Home Assistant by Sulla Labs - The best open-source smart home platform (SmartThings replacement)
+      org.opencontainers.image.description: Home Assistant  - The best open-source smart home platform (SmartThings replacement)
       org.opencontainers.image.licenses: ""
       org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: Home Assistant by Sulla Labs
+      org.opencontainers.image.title: Home Assistant 
       org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/home-assistant
       org.opencontainers.image.vendor: Sulla Labs
       org.opencontainers.image.version: 2.1.0
-    title: Home Assistant by Sulla Labs
+    title: Home Assistant 
     logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/home-assistant/smartthings.avif
     publisher: Sulla Labs
-    short_description: Home Assistant by Sulla Labs - The ultimate open-source smart home platform. Full local control and SmartThings integration.
+    short_description: Home Assistant  - The ultimate open-source smart home platform. Full local control and SmartThings integration.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/home-assistant/installation.yaml
