@@ -28,7 +28,6 @@ plugins:
     publisher: Sulla Labs
     short_description: Beautiful open-source project management. The best Jira / Linear alternative.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plane/installation.yaml
-  To clean the whole house
 
   - slug: docker.io/sulla-ai/novu
     version: 2.1.0
