@@ -14,7 +14,7 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
 
   mautic:
-    image: mautic/mautic:v5
+    image: mautic/mautic:latest
     platform: linux/amd64
     container_name: mautic
     ports:
