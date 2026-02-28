@@ -529,5 +529,5 @@ plugins:
     title: Windmill
     logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/windmill/windmill.svg
     publisher: Sulla Labs
-    short_description: Windmill - Open-source developer platform for scripts, workflows & UIs. Self-hosted Retool + Airflow alternative.
+    short_description: Add 1,400+ integrations to your agent. - Open-source developer platform for scripts, workflows & UIs. Self-hosted Retool + Airflow alternative.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/windmill/installation.yaml
