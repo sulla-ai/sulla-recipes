@@ -166,6 +166,7 @@ plugins:
     publisher: Sulla Labs
     short_description: AI Voice Receptionist  - Transform your Sulla
       Desktop into a professional AI receptionist
+    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/voice-ai/installation.yaml
 
   - slug: docker.io/sulla-ai/twenty
     version: 2.1.0
