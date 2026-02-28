@@ -503,3 +503,31 @@ plugins:
     publisher: Sulla Labs
     short_description: WordPress  - The world's most popular open-source CMS. Build websites, blogs & online stores.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/wordpress/installation.yaml
+
+  - slug: docker.io/sulla-ai/activepieces
+    version: 2026.02
+    containerd_compatible: true
+    labels:
+      com.docker.desktop.extension.api.version: 0.0.1
+      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.png
+      com.docker.extension.additional-urls: ""
+      com.docker.extension.categories: automation,developer-tools,ai,integrations
+      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2026.02</h4><ul><li>400+ pieces (integrations) available</li><li>AI-first workflow builder</li><li>MCP server support</li><li>Simplified single-container deployment with PGLite & in-memory Redis</li></ul>
+      com.docker.extension.detailed-description: AI-first open-source automation platform.<br><br><strong>ActivePieces</strong> is a powerful, self-hosted alternative to Zapier, Make, and n8n — with 400+ integrations (pieces) and native AI capabilities.<br><br>Build automations visually or let Sulla's agent execute actions through the ActivePieces API.<br><br><strong>Features:</strong><ul><li>400+ pieces (Gmail, Slack, Sheets, HubSpot, etc.)</li><li>Visual workflow builder</li><li>AI-first with native AI pieces</li><li>MCP server for AI agents</li><li>Webhooks, schedules & triggers</li><li>TypeScript-based extensibility</li><li>Single-container deployment (PGLite + in-memory Redis)</li><li>Self-hosted & private</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>2GB+ RAM recommended</li><li>Port 30120 available</li></ul>
+      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
+      com.docker.extension.screenshots: ""
+      dev.chainguard.image.title: ActivePieces
+      org.opencontainers.image.authors: Sulla Labs
+      org.opencontainers.image.created: 2026-02-28T00:00:00Z
+      org.opencontainers.image.description: ActivePieces - AI-first open-source automation platform with 400+ integrations
+      org.opencontainers.image.licenses: ""
+      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
+      org.opencontainers.image.title: ActivePieces
+      org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/activepieces
+      org.opencontainers.image.vendor: Sulla Labs
+      org.opencontainers.image.version: 2026.02
+    title: ActivePieces
+    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.png
+    publisher: Sulla Labs
+    short_description: ActivePieces - AI-first open-source automation platform. Self-hosted Zapier alternative with 400+ integrations.
+    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/installation.yaml
