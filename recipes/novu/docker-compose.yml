@@ -1,15 +1,16 @@
 services:
   novu-api:
-    image: ghcr.io/novuhq/novu/api:latest
+    image: ghcr.io/novuhq/novu/api:3.14.0
     container_name: novu-api
     ports:
       - "30250:3000"
     environment:
       - NODE_ENV=production
       - MONGO_URL=mongodb://novu-mongo:27017/novu
-      - REDIS_HOST=host.docker.internal
-      - REDIS_PORT=30117
+      - REDIS_HOST=novu-redis
+      - REDIS_PORT=6379
       - API_ROOT_URL=http://novu-api:3000
+      - FRONT_BASE_URL=http://localhost:30252
       - NEW_RELIC_ENABLED=false
       - JWT_SECRET={{sullaN8nEncryptionKey}}
       - NOVU_SECRET_KEY={{sullaN8nEncryptionKey}}
@@ -17,25 +18,49 @@ services:
     depends_on:
       novu-mongo:
         condition: service_healthy
+      novu-redis:
+        condition: service_started
     restart: unless-stopped
 
-  novu-web:
-    image: ghcr.io/novuhq/novu/web:latest
-    container_name: novu-web
+  novu-dashboard:
+    image: ghcr.io/novuhq/novu/dashboard:3.14.0
+    container_name: novu-dashboard
     ports:
-      - "30252:4200"
+      - "30252:4000"
     environment:
-      - REACT_APP_API_URL=http://localhost:30250
+      - VITE_API_HOSTNAME=http://localhost:30250
+      - VITE_WEBSOCKET_HOSTNAME=http://localhost:30253
+      - VITE_SELF_HOSTED=true
+    restart: unless-stopped
+
+  novu-ws:
+    image: ghcr.io/novuhq/novu/ws:3.14.0
+    container_name: novu-ws
+    ports:
+      - "30253:3002"
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - MONGO_URL=mongodb://novu-mongo:27017/novu
+      - REDIS_HOST=novu-redis
+      - REDIS_PORT=6379
+      - JWT_SECRET={{sullaN8nEncryptionKey}}
+      - NEW_RELIC_ENABLED=false
+    depends_on:
+      novu-mongo:
+        condition: service_healthy
+      novu-redis:
+        condition: service_started
     restart: unless-stopped
 
   novu-worker:
-    image: ghcr.io/novuhq/novu/worker:latest
+    image: ghcr.io/novuhq/novu/worker:3.14.0
     container_name: novu-worker
     environment:
       - NODE_ENV=production
       - MONGO_URL=mongodb://novu-mongo:27017/novu
-      - REDIS_HOST=host.docker.internal
-      - REDIS_PORT=30117
+      - REDIS_HOST=novu-redis
+      - REDIS_PORT=6379
       - API_ROOT_URL=http://novu-api:3000
       - NEW_RELIC_ENABLED=false
       - NOVU_SECRET_KEY={{sullaN8nEncryptionKey}}
@@ -43,6 +68,13 @@ services:
     depends_on:
       novu-api:
         condition: service_started
+      novu-redis:
+        condition: service_started
+    restart: unless-stopped
+
+  novu-redis:
+    image: redis:alpine
+    container_name: novu-redis
     restart: unless-stopped
 
   novu-mongo:
