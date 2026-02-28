@@ -1,0 +1,23 @@
+id: erpnext
+name: ERPNext
+description: Open-source ERP and CRM platform for businesses — complete business management solution
+icon: erpnext.svg
+version: "2026.02"
+category: business
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "ERPNext Admin"
+    url: "http://localhost:30280"
