@@ -1,0 +1,29 @@
+id: voice-ai
+name: AI Voice Receptionist by Sulla Labs
+description: Transform your Sulla Desktop into a professional AI receptionist
+icon: voice-ai.png
+version: "2.1.0"
+category: utility-tools
+
+setup:
+  - command: "git clone --branch main --depth 1 https://github.com/dograh-hq/dograh.git ${APP_DIR}/dograh"
+    optional: false
+
+compose:
+  composeFile: dograh/docker-compose.yaml
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Open Dograh UI"
+    url: "http://localhost:30208"
+
+env:
+  REGISTRY: "ghcr.io/dograh-hq"
+  ENABLE_TELEMETRY: "true"
