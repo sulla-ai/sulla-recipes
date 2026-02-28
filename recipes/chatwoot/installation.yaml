@@ -10,7 +10,7 @@ compose:
 
 setup:
   - name: "Prepare database"
-    command: "docker compose -f ${COMPOSE_FILE} run --rm rails bundle exec rails db:chatwoot_prepare"
+    command: "docker compose -f ${COMPOSE_FILE} run --rm -T rails bundle exec rails db:chatwoot_prepare"
 
 commands:
   start: "docker compose -f ${COMPOSE_FILE} up -d"

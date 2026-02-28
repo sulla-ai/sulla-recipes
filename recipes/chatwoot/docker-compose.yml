@@ -10,8 +10,8 @@ services:
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD={{sullaServicePassword}}
       - POSTGRES_DATABASE=chatwoot
-      - REDIS_PASSWORD={{sullaServicePassword}}
-      - REDIS_URL=redis://:{{sullaServicePassword|urlencode}}@chatwoot-redis:6379
+      - REDIS_PASSWORD=
+      - REDIS_URL=redis://host.docker.internal:30117
       - RAILS_LOG_TO_STDOUT=true
       - LOG_LEVEL=info
       - ENABLE_ACCOUNT_SIGNUP=false
@@ -28,6 +28,9 @@ services:
       - GOOGLE_OAUTH_CLIENT_ID={{gmail.client_id}}
       - GOOGLE_OAUTH_CLIENT_SECRET={{gmail.client_secret}}
       - GOOGLE_OAUTH_CALLBACK_URL={{gmail.redirect_uri}}
+      - NODE_ENV=production
+      - RAILS_ENV=production
+      - INSTALLATION_ENV=docker
     volumes:
       - chatwoot-storage-data:/app/storage
 
@@ -37,14 +40,8 @@ services:
     depends_on:
       chatwoot-postgres:
         condition: service_healthy
-      chatwoot-redis:
-        condition: service_started
     ports:
       - '30290:3000'
-    environment:
-      - NODE_ENV=production
-      - RAILS_ENV=production
-      - INSTALLATION_ENV=docker
     entrypoint: docker/entrypoints/rails.sh
     command: ['bundle', 'exec', 'rails', 's', '-p', '3000', '-b', '0.0.0.0']
     restart: unless-stopped
@@ -55,12 +52,6 @@ services:
     depends_on:
       chatwoot-postgres:
         condition: service_healthy
-      chatwoot-redis:
-        condition: service_started
-    environment:
-      - NODE_ENV=production
-      - RAILS_ENV=production
-      - INSTALLATION_ENV=docker
     command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
     restart: unless-stopped
 
@@ -82,17 +73,6 @@ services:
       timeout: 5s
       retries: 5
 
-  chatwoot-redis:
-    image: redis:alpine
-    container_name: chatwoot-redis
-    restart: unless-stopped
-    command: ["sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\""]
-    environment:
-      - REDIS_PASSWORD={{sullaServicePassword}}
-    volumes:
-      - chatwoot-redis-data:/data
-
 volumes:
   chatwoot-storage-data:
   chatwoot-postgres-data:
-  chatwoot-redis-data:
