@@ -31,13 +31,32 @@ services:
       timeout: 10s
       retries: 5
 
+  windmill-db-migrate:
+    image: postgres:16-alpine
+    container_name: sulla_windmill_db_migrate
+    restart: "no"
+    depends_on:
+      windmill-db-init:
+        condition: service_completed_successfully
+      windmill-server:
+        condition: service_healthy
+    environment:
+      - PGHOST=host.docker.internal
+      - PGPORT=30116
+      - PGUSER=sulla
+      - PGPASSWORD={{sullaServicePassword}}
+      - PGDATABASE=windmill
+    volumes:
+      - ./migrations/post-server-migration.sql:/migrations/post-server-migration.sql:ro
+    entrypoint: ["sh", "-c", "until pg_isready; do sleep 2; done; psql -v ON_ERROR_STOP=1 -f /migrations/post-server-migration.sql"]
+
   windmill-worker:
     image: ghcr.io/windmill-labs/windmill:main
     pull_policy: always
     container_name: sulla_windmill_worker
     restart: unless-stopped
     depends_on:
-      windmill-db-init:
+      windmill-db-migrate:
         condition: service_completed_successfully
     deploy:
       replicas: 1
@@ -61,7 +80,7 @@ services:
     container_name: sulla_windmill_worker_native
     restart: unless-stopped
     depends_on:
-      windmill-db-init:
+      windmill-db-migrate:
         condition: service_completed_successfully
     deploy:
       replicas: 1
