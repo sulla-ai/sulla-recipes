@@ -1,5 +1,5 @@
 id: voice-ai
-name: AI Voice Receptionist by Sulla Labs
+name: AI Voice Receptionist
 description: Transform your Sulla Desktop into a professional AI receptionist
 icon: voice-ai.png
 version: "2.1.0"
@@ -18,8 +18,10 @@ commands:
   update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
   logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
 
+openInBrowser: true
+
 extraUrls:
-  - label: "Open Dograh UI"
+  - label: "Open AI Voice Receptionist"
     url: "http://localhost:30208"
 
 env:
