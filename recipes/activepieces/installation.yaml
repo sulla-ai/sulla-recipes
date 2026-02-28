@@ -1,7 +1,7 @@
 id: activepieces
 name: ActivePieces
 description: Open-source AI-first automation platform — build workflows with 400+ pieces for email, CRM, social media, databases, and more (self-hosted Zapier alternative)
-icon: activepieces.png
+icon: activepieces.svg
 version: "2026.02"
 category: automation
 

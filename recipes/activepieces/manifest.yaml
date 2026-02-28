@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.png
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.svg
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: automation,developer-tools,ai,integrations
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2026.02</h4><ul><li>400+ pieces (integrations) available</li><li>AI-first workflow builder</li><li>MCP server support</li><li>Simplified single-container deployment with PGLite & in-memory Redis</li></ul>
@@ -22,7 +22,7 @@
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2026.02
   title: ActivePieces
-  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.png
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/activepieces.svg
   publisher: Sulla Labs
   short_description: ActivePieces - AI-first open-source automation platform. Self-hosted Zapier alternative with 400+ integrations.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/activepieces/installation.yaml
