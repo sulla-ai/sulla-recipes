@@ -8,15 +8,23 @@ category: productivity
 compose:
   composeFile: "docker-compose.yml"
 
-setup: []
+# Setup steps - download only the required files (no full clone)
+setup:
+  - type: shell
+    command: "wget -O Dockerfile https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/Dockerfile"
+  - type: shell
+    command: "wget -O docker-compose.yml https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/docker-compose.yml"
 
+# Commands
 commands:
-  start: "docker compose -f ${COMPOSE_FILE} up -d"
-  stop: "docker compose -f ${COMPOSE_FILE} down"
-  restart: "docker compose -f ${COMPOSE_FILE} restart"
-  status: "docker compose -f ${COMPOSE_FILE} ps"
-  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
-  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+  start: "docker compose up -d --build"
+  stop: "docker compose down"
+  restart: "docker compose restart"
+  status: "docker compose ps"
+  update: "docker compose pull && docker compose up -d --build"
+  logs: "docker compose logs --tail=100"
+
+openInBrowser: true
 
 extraUrls:
   - label: "AppFlowy Workspace"
