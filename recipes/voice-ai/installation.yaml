@@ -5,6 +5,11 @@ icon: voice-ai.png
 version: "2.1.0"
 category: utility-tools
 
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
 commands:
   start: "docker compose -f ${COMPOSE_FILE} up -d"
   stop: "docker compose -f ${COMPOSE_FILE} down"
