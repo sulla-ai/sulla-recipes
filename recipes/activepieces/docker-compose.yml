@@ -13,8 +13,8 @@ services:
       - AP_SIGN_UP_ENABLED=false
       - AP_TELEMETRY_ENABLED=false
       - AP_ENVIRONMENT=prod
-      - AP_JWT_SECRET={{sullaServicePassword}}
-      - AP_ENCRYPTION_KEY={{sullaN8nEncryptionKey}}
+      - AP_JWT_SECRET={{sullaServicePassword|md5}}{{sullaN8nEncryptionKey|md5}}
+      - AP_ENCRYPTION_KEY={{sullaN8nEncryptionKey|md5}}
       - AP_LOG_LEVEL=info
     restart: unless-stopped
     healthcheck:
