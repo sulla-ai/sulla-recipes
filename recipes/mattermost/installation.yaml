@@ -1,0 +1,23 @@
+id: mattermost
+name: Mattermost
+description: Self-hosted Slack alternative for team communication and collaboration
+icon: mattermost.svg
+version: "2026.02"
+category: communication
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Mattermost Team Edition"
+    url: "http://localhost:30270"
