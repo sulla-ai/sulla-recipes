@@ -34,15 +34,17 @@ services:
     restart: unless-stopped
 
   immich-postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: immich-postgres
-    # No host port mapping — internal only (saves ports)
+    ports:
+      - "30212:5432"
     environment:
       - POSTGRES_DB=immich
       - POSTGRES_USER=immich
       - POSTGRES_PASSWORD={{sullaServicePassword}}
     volumes:
       - immich-postgres-data:/var/lib/postgresql/data
+    command: postgres -c 'shared_preload_libraries=vector'   # Ensures vector extension loads
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U immich"]
       interval: 10s
