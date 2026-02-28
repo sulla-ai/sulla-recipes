@@ -23,7 +23,7 @@ services:
       - --skip-innodb-read-only-compressed
 
   erpnext-backend:
-    image: frappe/erpnext-worker:v15
+    image: frappe/erpnext-worker:latest
     platform: linux/amd64
     container_name: erpnext-backend
     depends_on:
@@ -42,7 +42,7 @@ services:
     restart: unless-stopped
 
   erpnext-frontend:
-    image: frappe/erpnext-nginx:v15
+    image: frappe/erpnext-nginx:latest
     platform: linux/amd64
     container_name: erpnext-frontend
     ports:
@@ -63,7 +63,7 @@ services:
     restart: unless-stopped
 
   erpnext-websocket:
-    image: frappe/frappe-socketio:v15
+    image: frappe/frappe-socketio:latest
     platform: linux/amd64
     container_name: erpnext-websocket
     depends_on:
