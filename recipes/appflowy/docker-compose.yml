@@ -9,7 +9,6 @@ services:
     ports:
       - "30260:80"
     environment:
-      - DISPLAY=$DISPLAY
       - NO_AT_BRIDGE=1 # fixes dbind-WARNING
       - TZ=America/Los_Angeles
       - DATABASE_URL=postgresql://appflowy:{{sullaServicePassword|urlencode}}@appflowy-postgres:5432/appflowy
