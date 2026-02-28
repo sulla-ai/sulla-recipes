@@ -1,0 +1,54 @@
+services:
+  plane-web:
+    image: makeplane/plane-web:latest
+    container_name: plane-web
+    ports:
+      - "30270:80"
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:30270/api
+    restart: unless-stopped
+
+  plane-api:
+    image: makeplane/plane-api:latest
+    container_name: plane-api
+    environment:
+      - DATABASE_URL=postgresql://plane:{{sullaServicePassword|urlencode}}@plane-postgres:5432/plane
+      - REDIS_URL=redis://host.docker.internal:30117
+      - SECRET_KEY={{sullaN8nEncryptionKey}}
+      - DEBUG=False
+    depends_on:
+      plane-postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  plane-worker:
+    image: makeplane/plane-worker:latest
+    container_name: plane-worker
+    environment:
+      - DATABASE_URL=postgresql://plane:{{sullaServicePassword|urlencode}}@plane-postgres:5432/plane
+      - REDIS_URL=redis://host.docker.internal:30117
+    depends_on:
+      plane-api:
+        condition: service_started
+    restart: unless-stopped
+
+  plane-postgres:
+    image: postgres:16-alpine
+    container_name: plane-postgres
+    ports:
+      - "30271:5432"
+    environment:
+      - POSTGRES_DB=plane
+      - POSTGRES_USER=plane
+      - POSTGRES_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - plane-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plane"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  plane-postgres-data:
