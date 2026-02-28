@@ -1,7 +1,6 @@
 services:
   mautic-db:
     image: mariadb:10.6
-    platform: linux/amd64
     container_name: mautic-db
     environment:
       - MYSQL_ROOT_PASSWORD={{sullaServicePassword}}
@@ -12,16 +11,21 @@ services:
       - mautic-db-data:/var/lib/mysql
     restart: unless-stopped
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p{{sullaServicePassword}}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
 
   mautic:
     image: mautic/mautic:latest
-    platform: linux/amd64
     container_name: mautic
     ports:
       - "30285:80"
     depends_on:
       mautic-db:
-        condition: service_started
+        condition: service_healthy
     environment:
       - MAUTIC_DB_HOST=mautic-db
       - MAUTIC_DB_USER=mautic
