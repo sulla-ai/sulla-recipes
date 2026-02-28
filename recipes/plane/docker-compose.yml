@@ -1,39 +1,213 @@
-services:
-  plane:
-    image: makeplane/plane-aio-community:stable
-    container_name: plane
-    ports:
-      - "30270:80"
-    volumes:
-      - plane-data:/app/data
-    environment:
-      - TZ=America/Los_Angeles
-      - DATABASE_URL=postgresql://plane:{{sullaServicePassword|urlencode}}@plane-postgres:5432/plane
-      - REDIS_URL=redis://host.docker.internal:30117
-      - SECRET_KEY={{sullaN8nEncryptionKey}}
-    depends_on:
-      plane-postgres:
-        condition: service_healthy
-    restart: unless-stopped
+x-db-env: &db-env
+  PGHOST: plane-db
+  PGDATABASE: plane
+  POSTGRES_USER: plane
+  POSTGRES_PASSWORD: '{{sullaServicePassword}}'
+  POSTGRES_DB: plane
+  POSTGRES_PORT: 5432
+  PGDATA: /var/lib/postgresql/data
 
-  plane-postgres:
-    image: pgvector/pgvector:pg16
-    container_name: plane-postgres
+x-redis-env: &redis-env
+  REDIS_HOST: host.docker.internal
+  REDIS_PORT: 30117
+  REDIS_URL: redis://host.docker.internal:30117/
+
+x-minio-env: &minio-env
+  MINIO_ROOT_USER: '{{sullaN8nEncryptionKey}}'
+  MINIO_ROOT_PASSWORD: '{{sullaServicePassword}}'
+
+x-aws-s3-env: &aws-s3-env
+  AWS_REGION: ''
+  AWS_ACCESS_KEY_ID: '{{sullaN8nEncryptionKey}}'
+  AWS_SECRET_ACCESS_KEY: '{{sullaServicePassword}}'
+  AWS_S3_ENDPOINT_URL: http://plane-minio:9000
+  AWS_S3_BUCKET_NAME: uploads
+
+x-proxy-env: &proxy-env
+  APP_DOMAIN: localhost
+  FILE_SIZE_LIMIT: 5242880
+  LISTEN_HTTP_PORT: 30270
+  LISTEN_HTTPS_PORT: 30273
+  BUCKET_NAME: uploads
+  SITE_ADDRESS: ':80'
+
+x-mq-env: &mq-env
+  RABBITMQ_HOST: plane-mq
+  RABBITMQ_PORT: 5672
+  RABBITMQ_DEFAULT_USER: plane
+  RABBITMQ_DEFAULT_PASS: '{{sullaServicePassword}}'
+  RABBITMQ_DEFAULT_VHOST: plane
+  RABBITMQ_VHOST: plane
+
+x-live-env: &live-env
+  API_BASE_URL: http://api:8000
+  LIVE_SERVER_SECRET_KEY: '{{sullaN8nEncryptionKey}}'
+
+x-app-env: &app-env
+  WEB_URL: http://localhost:30270
+  DEBUG: 0
+  GUNICORN_WORKERS: 1
+  USE_MINIO: 1
+  DATABASE_URL: 'postgresql://plane:{{sullaServicePassword|urlencode}}@plane-db/plane'
+  SECRET_KEY: '{{sullaN8nEncryptionKey}}'
+  AMQP_URL: 'amqp://plane:{{sullaServicePassword|urlencode}}@plane-mq:5672/plane'
+  API_KEY_RATE_LIMIT: 60/minute
+  MINIO_ENDPOINT_SSL: 0
+  LIVE_SERVER_SECRET_KEY: '{{sullaN8nEncryptionKey}}'
+
+services:
+  web:
+    image: artifacts.plane.so/makeplane/plane-frontend:v1.2.2
+    container_name: plane-web
+    restart: unless-stopped
+    depends_on:
+      - api
+      - worker
+
+  space:
+    image: artifacts.plane.so/makeplane/plane-space:v1.2.2
+    container_name: plane-space
+    restart: unless-stopped
+    depends_on:
+      - api
+      - worker
+      - web
+
+  admin:
+    image: artifacts.plane.so/makeplane/plane-admin:v1.2.2
+    container_name: plane-admin
+    restart: unless-stopped
+    depends_on:
+      - api
+      - web
+
+  live:
+    image: artifacts.plane.so/makeplane/plane-live:v1.2.2
+    container_name: plane-live
+    environment:
+      <<: [*live-env, *redis-env]
+    restart: unless-stopped
+    depends_on:
+      - api
+      - web
+
+  api:
+    image: artifacts.plane.so/makeplane/plane-backend:v1.2.2
+    container_name: plane-api
+    command: ./bin/docker-entrypoint-api.sh
+    restart: unless-stopped
+    volumes:
+      - plane-logs-api:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    depends_on:
+      plane-db:
+        condition: service_healthy
+      plane-mq:
+        condition: service_started
+
+  worker:
+    image: artifacts.plane.so/makeplane/plane-backend:v1.2.2
+    container_name: plane-worker
+    command: ./bin/docker-entrypoint-worker.sh
+    restart: unless-stopped
+    volumes:
+      - plane-logs-worker:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    depends_on:
+      - api
+      - plane-db
+      - plane-mq
+
+  beat-worker:
+    image: artifacts.plane.so/makeplane/plane-backend:v1.2.2
+    container_name: plane-beat-worker
+    command: ./bin/docker-entrypoint-beat.sh
+    restart: unless-stopped
+    volumes:
+      - plane-logs-beat:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    depends_on:
+      - api
+      - plane-db
+      - plane-mq
+
+  migrator:
+    image: artifacts.plane.so/makeplane/plane-backend:v1.2.2
+    container_name: plane-migrator
+    command: ./bin/docker-entrypoint-migrator.sh
+    restart: on-failure
+    volumes:
+      - plane-logs-migrator:/code/plane/logs
+    environment:
+      <<: [*app-env, *db-env, *redis-env, *minio-env, *aws-s3-env, *proxy-env]
+    depends_on:
+      plane-db:
+        condition: service_healthy
+
+  plane-db:
+    image: postgres:15.7-alpine
+    container_name: plane-db
+    command: postgres -c 'max_connections=1000'
+    restart: unless-stopped
+    environment:
+      <<: *db-env
+    volumes:
+      - plane-pgdata:/var/lib/postgresql/data
     ports:
       - "30271:5432"
-    environment:
-      - POSTGRES_DB=plane
-      - POSTGRES_USER=plane
-      - POSTGRES_PASSWORD={{sullaServicePassword}}
-    volumes:
-      - plane-postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U plane"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  plane-mq:
+    image: rabbitmq:3.13.6-management-alpine
+    container_name: plane-mq
     restart: unless-stopped
+    environment:
+      <<: *mq-env
+    volumes:
+      - plane-rabbitmq-data:/var/lib/rabbitmq
+
+  plane-minio:
+    image: minio/minio:latest
+    container_name: plane-minio
+    command: server /export --console-address ":9090"
+    restart: unless-stopped
+    environment:
+      <<: *minio-env
+    volumes:
+      - plane-uploads:/export
+
+  proxy:
+    image: artifacts.plane.so/makeplane/plane-proxy:v1.2.2
+    container_name: plane-proxy
+    restart: unless-stopped
+    environment:
+      <<: *proxy-env
+    ports:
+      - "30270:80"
+    volumes:
+      - plane-proxy-config:/config
+      - plane-proxy-data:/data
+    depends_on:
+      - web
+      - api
+      - space
+      - admin
+      - live
 
 volumes:
-  plane-data:
-  plane-postgres-data:
+  plane-pgdata:
+  plane-uploads:
+  plane-logs-api:
+  plane-logs-worker:
+  plane-logs-beat:
+  plane-logs-migrator:
+  plane-rabbitmq-data:
+  plane-proxy-config:
+  plane-proxy-data:
