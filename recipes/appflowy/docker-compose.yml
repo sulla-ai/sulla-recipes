@@ -1,6 +1,6 @@
 services:
   appflowy:
-    image: ghcr.io/appflowy-io/appflowy-cloud:latest
+    image: appflowyinc/appflowy-cloud:latest
     container_name: appflowy
     ports:
       - "30260:80"
@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
 
   appflowy-postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: appflowy-postgres
     ports:
       - "30261:5432"
