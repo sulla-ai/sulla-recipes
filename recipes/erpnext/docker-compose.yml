@@ -22,20 +22,41 @@ services:
       - --skip-character-set-client-handshake
       - --skip-innodb-read-only-compressed
 
+  erpnext-configurator:
+    image: frappe/erpnext-worker:latest
+    platform: linux/amd64
+    container_name: erpnext-configurator
+    depends_on:
+      erpnext-db:
+        condition: service_healthy
+    entrypoint: ["bash", "-c"]
+    command:
+      - >
+        ls -1 apps > sites/apps.txt;
+        bench set-config -g db_host erpnext-db;
+        bench set-config -g db_port 3306;
+        bench set-config -g redis_cache redis://host.docker.internal:30117/10;
+        bench set-config -g redis_queue redis://host.docker.internal:30117/11;
+        bench set-config -g redis_socketio redis://host.docker.internal:30117/12;
+        bench set-config -g socketio_port 9000;
+        if [ ! -f sites/localhost/site_config.json ]; then
+          bench new-site localhost
+            --mariadb-root-password={{sullaServicePassword}}
+            --admin-password={{sullaServicePassword}}
+            --install-app erpnext
+            --set-default;
+        fi
+    volumes:
+      - erpnext-sites:/home/frappe/frappe-bench/sites
+      - erpnext-assets:/home/frappe/frappe-bench/sites/assets
+
   erpnext-backend:
     image: frappe/erpnext-worker:latest
     platform: linux/amd64
     container_name: erpnext-backend
     depends_on:
-      erpnext-db:
-        condition: service_healthy
-    environment:
-      - DB_HOST=erpnext-db
-      - DB_PORT=3306
-      - REDIS_CACHE=host.docker.internal:30117/0
-      - REDIS_QUEUE=host.docker.internal:30117/1
-      - REDIS_SOCKETIO=host.docker.internal:30117/2
-      - SOCKETIO_PORT=9000
+      erpnext-configurator:
+        condition: service_completed_successfully
     volumes:
       - erpnext-sites:/home/frappe/frappe-bench/sites
       - erpnext-assets:/home/frappe/frappe-bench/sites/assets:ro
@@ -67,8 +88,8 @@ services:
     platform: linux/amd64
     container_name: erpnext-websocket
     depends_on:
-      erpnext-backend:
-        condition: service_started
+      erpnext-configurator:
+        condition: service_completed_successfully
     volumes:
       - erpnext-sites:/home/frappe/frappe-bench/sites
     restart: unless-stopped
