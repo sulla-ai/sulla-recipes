@@ -10,7 +10,7 @@ services:
       - TZ=America/Los_Angeles
       - DATABASE_URL=postgresql://appflowy:{{sullaServicePassword|urlencode}}@appflowy-postgres:5432/appflowy
       - REDIS_URL=redis://host.docker.internal:30117
-      - APPFLOWY_ADMIN_EMAIL=admin@sulla.local
+      - APPFLOWY_ADMIN_EMAIL={{sullaEmail}}
       - APPFLOWY_ADMIN_PASSWORD={{sullaServicePassword}}
     depends_on:
       appflowy-postgres:
