@@ -28,36 +28,7 @@ plugins:
     publisher: Sulla Labs
     short_description: Beautiful open-source project management. The best Jira / Linear alternative.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plane/installation.yaml
-  
-
-  - slug: docker.io/sulla-ai/appflowy
-    version: 2.1.0
-    containerd_compatible: true
-    labels:
-      com.docker.desktop.extension.api.version: 0.0.1
-      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/appflowy/appflowy.webp
-      com.docker.extension.additional-urls: ""
-      com.docker.extension.categories: productivity,notes,knowledge-base,collaboration
-      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved AI features</li><li>Better database views</li><li>Enhanced collaboration</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI refresh</li><li>New block types</li><li>Advanced permissions</li></ul>
-      com.docker.extension.detailed-description: The open-source Notion alternative.<br><br><strong>AppFlowy</strong> is a privacy-first, beautiful workspace where you can build notes, databases, wikis, and team projects — all running locally with full data ownership.<br><br><strong>Features:</strong><ul><li>Beautiful Notion-like interface</li><li>Powerful databases & kanban boards</li><li>Real-time collaboration</li><li>Built-in AI assistance</li><li>Pages, wikis & documents</li><li>Self-hosted & 100% private</li><li>Works offline</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>6GB+ RAM recommended</li><li>Port 30260 available</li></ul>
-      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
-      com.docker.extension.screenshots: ""
-      dev.chainguard.image.title: AppFlowy
-      org.opencontainers.image.authors: Sulla Labs
-      org.opencontainers.image.created: 2026-02-27T00:00:00Z
-      org.opencontainers.image.description: AppFlowy - Open-source Notion alternative. Private, beautiful, and powerful.
-      org.opencontainers.image.licenses: ""
-      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
-      org.opencontainers.image.title: AppFlowy
-      org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/appflowy
-      org.opencontainers.image.vendor: Sulla Labs
-      org.opencontainers.image.version: 2.1.0
-    title: AppFlowy
-    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/appflowy/appflowy.webp
-    publisher: Sulla Labs
-    short_description: AppFlowy - Open-source Notion alternative. Private workspace with databases, AI, and collaboration.
-    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/appflowy/installation.yaml
-  
+  To clean the whole house
 
   - slug: docker.io/sulla-ai/novu
     version: 2.1.0
