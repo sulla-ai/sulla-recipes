@@ -1,6 +1,6 @@
 services:
   plane:
-    image: makeplane/plane:latest
+    image: makeplane/plane-aio-community:stable
     container_name: plane
     ports:
       - "30270:80"
