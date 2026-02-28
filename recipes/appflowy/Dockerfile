@@ -2,8 +2,11 @@
 # BUILDER
 #================
 
-FROM archlinux/archlinux:base-devel as builder
+FROM archlinux/archlinux:base-devel AS builder
 RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+
+# Work around pacman sandbox/seccomp issues in some Docker runtimes
+RUN printf '\nDisableSandbox\n' >> /etc/pacman.conf
 
 # Upgrade the system
 RUN pacman -Syyu --noconfirm
@@ -59,6 +62,9 @@ RUN cd frontend && \
 #================
 
 FROM archlinux/archlinux
+
+# Work around pacman sandbox/seccomp issues in some Docker runtimes
+RUN printf '\nDisableSandbox\n' >> /etc/pacman.conf
 
 # Upgrade the system
 RUN pacman -Syyu --noconfirm
