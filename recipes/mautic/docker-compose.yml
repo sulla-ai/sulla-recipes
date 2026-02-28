@@ -1,0 +1,38 @@
+services:
+  mautic-db:
+    image: mariadb:10.6
+    platform: linux/amd64
+    container_name: mautic-db
+    environment:
+      - MYSQL_ROOT_PASSWORD={{sullaServicePassword}}
+      - MYSQL_DATABASE=mautic
+      - MYSQL_USER=mautic
+      - MYSQL_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - mautic-db-data:/var/lib/mysql
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+
+  mautic:
+    image: mautic/mautic:v5
+    platform: linux/amd64
+    container_name: mautic
+    ports:
+      - "30285:80"
+    depends_on:
+      mautic-db:
+        condition: service_started
+    environment:
+      - MAUTIC_DB_HOST=mautic-db
+      - MAUTIC_DB_USER=mautic
+      - MAUTIC_DB_PASSWORD={{sullaServicePassword}}
+      - MAUTIC_DB_NAME=mautic
+      - MAUTIC_RUN_CRON_JOBS=true
+      - MAUTIC_TRUSTED_PROXIES=0.0.0.0/0
+    volumes:
+      - mautic-data:/var/www/html
+    restart: unless-stopped
+
+volumes:
+  mautic-db-data:
+  mautic-data:

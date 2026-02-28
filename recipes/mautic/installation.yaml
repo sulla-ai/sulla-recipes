@@ -1,0 +1,23 @@
+id: mautic
+name: Mautic
+description: Open-source marketing automation platform — email campaigns, lead management, and analytics
+icon: mautic.png
+version: "2026.02"
+category: marketing
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Mautic Marketing"
+    url: "http://localhost:30285"
