@@ -1,11 +1,11 @@
 services:
   appflowy:
-    image: appflowyinc/appflowy-cloud:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: appflowy
     ports:
       - "30260:80"
-    volumes:
-      - appflowy-data:/app/data
     environment:
       - TZ=America/Los_Angeles
       - DATABASE_URL=postgresql://appflowy:{{sullaServicePassword|urlencode}}@appflowy-postgres:5432/appflowy
@@ -36,5 +36,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  appflowy-data:
   appflowy-postgres-data:
