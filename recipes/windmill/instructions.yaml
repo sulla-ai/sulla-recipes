@@ -1,0 +1,23 @@
+id: windmill
+name: Windmill
+description: Open-source developer platform for scripts, workflows, and UIs — a self-hosted alternative to Retool, n8n, Airflow, and Temporal
+icon: windmill.svg
+version: "2026.02"
+category: automation
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Windmill Dashboard"
+    url: "http://localhost:30130"
