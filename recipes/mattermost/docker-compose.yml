@@ -1,6 +1,7 @@
 services:
   mattermost:
     image: mattermost/mattermost-team-edition:latest
+    platform: linux/amd64
     container_name: mattermost
     ports:
       - "30270:8065"
@@ -31,6 +32,7 @@ services:
 
   mattermost-postgres:
     image: postgres:15-alpine
+    platform: linux/amd64
     container_name: mattermost-postgres
     ports:
       - "30271:5432"
