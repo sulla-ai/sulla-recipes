@@ -20,4 +20,4 @@ commands:
 
 extraUrls:
   - label: "Novu Dashboard"
-    url: "http://localhost:30250"
+    url: "http://localhost:30252"

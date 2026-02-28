@@ -9,6 +9,7 @@ services:
       - MONGO_URL=mongodb://novu-mongo:27017/novu
       - REDIS_HOST=host.docker.internal
       - REDIS_PORT=30117
+      - API_ROOT_URL=http://novu-api:3000
       - NEW_RELIC_ENABLED=false
       - JWT_SECRET={{sullaN8nEncryptionKey}}
       - NOVU_SECRET_KEY={{sullaN8nEncryptionKey}}
@@ -21,6 +22,8 @@ services:
   novu-web:
     image: ghcr.io/novuhq/novu/web:latest
     container_name: novu-web
+    ports:
+      - "30252:4200"
     environment:
       - REACT_APP_API_URL=http://localhost:30250
     restart: unless-stopped
@@ -33,8 +36,10 @@ services:
       - MONGO_URL=mongodb://novu-mongo:27017/novu
       - REDIS_HOST=host.docker.internal
       - REDIS_PORT=30117
+      - API_ROOT_URL=http://novu-api:3000
       - NEW_RELIC_ENABLED=false
       - NOVU_SECRET_KEY={{sullaN8nEncryptionKey}}
+      - STORE_ENCRYPTION_KEY={{sullaN8nEncryptionKey}}
     depends_on:
       novu-api:
         condition: service_started
