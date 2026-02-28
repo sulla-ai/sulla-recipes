@@ -4,7 +4,7 @@
   containerd_compatible: true
   labels:
     com.docker.desktop.extension.api.version: 0.0.1
-    com.docker.extension.icon: https://raw.githubusercontent.com/makeplane/plane/master/branding/logo-light.svg
+    com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plane/plane.png
     com.docker.extension.additional-urls: ""
     com.docker.extension.categories: project-management,productivity,team,business
     com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.1.0 (2 days ago)</h4><ul><li>Improved issue views & filters</li><li>Better AI assistance</li><li>Enhanced cycle & module management</li></ul><h4>2.0.0 (3 weeks ago)</h4><ul><li>Major UI overhaul</li><li>New analytics dashboard</li><li>Advanced permissions system</li></ul>
@@ -22,7 +22,7 @@
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
   title: Plane
-  logo: https://raw.githubusercontent.com/makeplane/plane/master/branding/logo-light.svg
+  logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plane/plane.png
   publisher: Sulla Labs
-  short_description: Plane - Beautiful open-source project management. The best Jira / Linear alternative.
+  short_description: Beautiful open-source project management. The best Jira / Linear alternative.
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/plane/installation.yaml
