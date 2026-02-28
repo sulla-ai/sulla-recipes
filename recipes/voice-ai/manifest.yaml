@@ -32,7 +32,7 @@
       data</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop
       v1.0.0+</li><li>Microphone access</li><li>2GB RAM minimum</li><li>Internet
       connection</li></ul>
-    com.docker.extension.publisher-url: https://github.com/sulla-ai/voice-ai
+    com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
     com.docker.extension.screenshots: ""
     dev.chainguard.image.title: AI Voice Receptionist
     dev.chainguard.package.main: ""
@@ -41,14 +41,13 @@
     org.opencontainers.image.description: AI Voice Receptionist by Sulla Labs -
       Transform your Sulla Desktop into a professional AI receptionist
     org.opencontainers.image.licenses: ""
-    org.opencontainers.image.source: https://github.com/sulla-ai/voice-ai
+    org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
     org.opencontainers.image.title: AI Voice Receptionist by Sulla Labs
-    org.opencontainers.image.url: https://hub.docker.com/r/alancarvalho/voice-ai
+    org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/voice-ai
     org.opencontainers.image.vendor: Sulla Labs
     org.opencontainers.image.version: 2.1.0
   title: AI Voice Receptionist by Sulla Labs
   logo: https://raw.githubusercontent.com/sulla-ai/sulla-desktop/main/pkg/rancher-desktop/assets/images/voice-ai.svg
   publisher: Sulla Labs
-  short_description: AI Voice Receptionist by Sulla Labs - Transform your Sulla
-    Desktop into a professional AI receptionist
+  short_description: AI Voice Receptionist by Sulla Labs - Transform your Sulla Desktop into a professional AI receptionist
   installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/voice-ai/installation.yaml
