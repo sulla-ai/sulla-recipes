@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+  base: &base
+    image: chatwoot/chatwoot:latest
+    environment:
+      - SECRET_KEY_BASE={{sullaN8nEncryptionKey}}
+      - FRONTEND_URL=http://localhost:30290
+      - POSTGRES_HOST=chatwoot-postgres
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD={{sullaServicePassword}}
+      - POSTGRES_DATABASE=chatwoot
+      - REDIS_PASSWORD={{sullaServicePassword}}
+      - REDIS_URL=redis://:{{sullaServicePassword|urlencode}}@chatwoot-redis:6379
+      - RAILS_LOG_TO_STDOUT=true
+      - LOG_LEVEL=info
+      - ENABLE_ACCOUNT_SIGNUP=false
+      - SLACK_CLIENT_ID={{slack.client_id}}
+      - SLACK_CLIENT_SECRET={{slack.client_secret}}
+      - FB_VERIFY_TOKEN={{messenger.webhook_verify_token}}
+      - FB_APP_SECRET={{messenger.app_secret}}
+      - FB_APP_ID={{instagram.app_id}}
+      - IG_VERIFY_TOKEN={{messenger.webhook_verify_token}}
+      - TWITTER_APP_ID={{x.api_key}}
+      - TWITTER_CONSUMER_KEY={{x.api_key}}
+      - TWITTER_CONSUMER_SECRET={{x.api_secret}}
+      - TWITTER_ENVIRONMENT={{x.webhook_url}}
+      - GOOGLE_OAUTH_CLIENT_ID={{gmail.client_id}}
+      - GOOGLE_OAUTH_CLIENT_SECRET={{gmail.client_secret}}
+      - GOOGLE_OAUTH_CALLBACK_URL={{gmail.redirect_uri}}
+    volumes:
+      - chatwoot-storage-data:/app/storage
+
+  rails:
+    <<: *base
+    container_name: chatwoot-rails
+    depends_on:
+      chatwoot-postgres:
+        condition: service_healthy
+      chatwoot-redis:
+        condition: service_started
+    ports:
+      - '30290:3000'
+    environment:
+      - NODE_ENV=production
+      - RAILS_ENV=production
+      - INSTALLATION_ENV=docker
+    entrypoint: docker/entrypoints/rails.sh
+    command: ['bundle', 'exec', 'rails', 's', '-p', '3000', '-b', '0.0.0.0']
+    restart: unless-stopped
+
+  sidekiq:
+    <<: *base
+    container_name: chatwoot-sidekiq
+    depends_on:
+      chatwoot-postgres:
+        condition: service_healthy
+      chatwoot-redis:
+        condition: service_started
+    environment:
+      - NODE_ENV=production
+      - RAILS_ENV=production
+      - INSTALLATION_ENV=docker
+    command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
+    restart: unless-stopped
+
+  chatwoot-postgres:
+    image: pgvector/pgvector:pg16
+    container_name: chatwoot-postgres
+    restart: unless-stopped
+    ports:
+      - '30291:5432'
+    volumes:
+      - chatwoot-postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=chatwoot
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD={{sullaServicePassword}}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  chatwoot-redis:
+    image: redis:alpine
+    container_name: chatwoot-redis
+    restart: unless-stopped
+    command: ["sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\""]
+    environment:
+      - REDIS_PASSWORD={{sullaServicePassword}}
+    volumes:
+      - chatwoot-redis-data:/data
+
+volumes:
+  chatwoot-storage-data:
+  chatwoot-postgres-data:
+  chatwoot-redis-data:
