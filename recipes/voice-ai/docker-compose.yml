@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgres:
     image: pgvector/pgvector:pg17
@@ -20,22 +18,6 @@ services:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 3s
       timeout: 3s
-      retries: 10
-    networks:
-      - app-network
-
-  redis:
-    image: redis:7
-    ports:
-      - "30211:6379"
-    command: >
-      --requirepass redissecret
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "-a", "redissecret", "ping"]
-      interval: 3s
-      timeout: 10s
       retries: 10
     networks:
       - app-network
@@ -92,8 +74,9 @@ services:
       # Database configuration (using containerized postgres)
       DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres:5432/postgres"
 
-      # Redis configuration (using containerized redis)
-      REDIS_URL: "redis://:redissecret@redis:6379"
+      # Redis configuration (using default host redis)
+      REDIS_HOST: "host.docker.internal"
+      REDIS_PORT: "30117"
 
       # Storage configuration - using local MinIO
       ENABLE_AWS_S3: "false"
@@ -125,8 +108,6 @@ services:
       - "30209:8000"
     depends_on:
       postgres:
-        condition: service_healthy
-      redis:
         condition: service_healthy
       minio:
         condition: service_healthy
@@ -205,7 +186,6 @@ services:
 
 volumes:
   postgres_data:
-  redis_data:
   minio-data:
     driver: local
   shared-tmp:
