@@ -1,39 +1,23 @@
 services:
-  plane-web:
-    image: makeplane/plane-web:latest
-    container_name: plane-web
+  plane:
+    image: makeplane/plane:latest
+    container_name: plane
     ports:
       - "30270:80"
+    volumes:
+      - plane-data:/app/data
     environment:
-      - NEXT_PUBLIC_API_BASE_URL=http://localhost:30270/api
-    restart: unless-stopped
-
-  plane-api:
-    image: makeplane/plane-api:latest
-    container_name: plane-api
-    environment:
+      - TZ=America/Los_Angeles
       - DATABASE_URL=postgresql://plane:{{sullaServicePassword|urlencode}}@plane-postgres:5432/plane
       - REDIS_URL=redis://host.docker.internal:30117
       - SECRET_KEY={{sullaN8nEncryptionKey}}
-      - DEBUG=False
     depends_on:
       plane-postgres:
         condition: service_healthy
     restart: unless-stopped
 
-  plane-worker:
-    image: makeplane/plane-worker:latest
-    container_name: plane-worker
-    environment:
-      - DATABASE_URL=postgresql://plane:{{sullaServicePassword|urlencode}}@plane-postgres:5432/plane
-      - REDIS_URL=redis://host.docker.internal:30117
-    depends_on:
-      plane-api:
-        condition: service_started
-    restart: unless-stopped
-
   plane-postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: plane-postgres
     ports:
       - "30271:5432"
@@ -51,4 +35,5 @@ services:
     restart: unless-stopped
 
 volumes:
+  plane-data:
   plane-postgres-data:
