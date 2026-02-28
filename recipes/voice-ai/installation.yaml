@@ -21,7 +21,7 @@ commands:
 openInBrowser: true
 
 extraUrls:
-  - label: "Open AI Voice Receptionist"
+  - label: "Open Dashboard"
     url: "http://localhost:30208"
 
 env:
