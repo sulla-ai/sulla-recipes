@@ -144,7 +144,7 @@ plugins:
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/nextcloud/installation.yaml
   
 
-  - slug: docker.io/alancarvalho/voice-ai
+  - slug: docker.io/sulla-ai/voice-ai
     version: 2.1.0
     containerd_compatible: true
     labels:
