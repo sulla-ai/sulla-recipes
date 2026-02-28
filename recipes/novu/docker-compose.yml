@@ -7,7 +7,9 @@ services:
     environment:
       - NODE_ENV=production
       - MONGO_URL=mongodb://novu-mongo:27017/novu
-      - REDIS_URL=redis://host.docker.internal:30117
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=30117
+      - NEW_RELIC_ENABLED=false
       - JWT_SECRET={{sullaN8nEncryptionKey}}
       - STORE_ENCRYPTION_KEY={{sullaN8nEncryptionKey}}
     depends_on:
@@ -26,8 +28,11 @@ services:
     image: ghcr.io/novuhq/novu/worker:latest
     container_name: novu-worker
     environment:
+      - NODE_ENV=production
       - MONGO_URL=mongodb://novu-mongo:27017/novu
-      - REDIS_URL=redis://host.docker.internal:30117
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=30117
+      - NEW_RELIC_ENABLED=false
     depends_on:
       novu-api:
         condition: service_started
