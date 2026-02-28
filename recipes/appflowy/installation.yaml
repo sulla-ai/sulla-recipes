@@ -11,9 +11,9 @@ compose:
 # Setup steps - download only the required files (no full clone)
 setup:
   - type: shell
-    command: "wget -O Dockerfile https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/Dockerfile"
+    command: "curl -o Dockerfile https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/Dockerfile"
   - type: shell
-    command: "wget -O docker-compose.yml https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/docker-compose.yml"
+    command: "curl -o docker-compose.yml https://raw.githubusercontent.com/AppFlowy-IO/appflowy/main/frontend/scripts/docker-buildfiles/docker-compose.yml"
 
 # Commands
 commands:
