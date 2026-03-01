@@ -615,3 +615,31 @@ plugins:
     publisher: Sulla Labs
     short_description: Remotion - Make videos programmatically with React. Self-hosted Studio for composing, previewing & rendering MP4 videos.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/remotion/installation.yaml
+
+  - slug: docker.io/sulla-ai/comfyui
+    version: 1.0.0
+    containerd_compatible: true
+    labels:
+      com.docker.desktop.extension.api.version: 0.0.1
+      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/comfyui/comfyui.png
+      com.docker.extension.additional-urls: ""
+      com.docker.extension.categories: ai,image-generation,stable-diffusion,creative
+      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>1.0.0</h4><ul><li>Node-based workflow editor for Stable Diffusion</li><li>ComfyUI Manager pre-configured for easy custom node installation</li><li>Persistent storage for models, workflows, and outputs</li><li>NVIDIA GPU acceleration with CUDA 12.8</li></ul>
+      com.docker.extension.detailed-description: The most powerful and modular Stable Diffusion GUI and backend.<br><br><strong>ComfyUI</strong> is a node-based interface that lets you design and execute advanced AI image generation workflows with unprecedented control. Chain together models, samplers, schedulers, LoRAs, ControlNets, and more in a visual graph editor.<br><br><strong>Features:</strong><ul><li>Visual node-based workflow editor</li><li>Stable Diffusion 1.5, SDXL, SD3, Flux support</li><li>LoRA, ControlNet, IP-Adapter, and more</li><li>ComfyUI Manager for easy custom node installation</li><li>Queue system for batch generation</li><li>Workflow import/export and sharing</li><li>Persistent model and output storage</li><li>NVIDIA GPU acceleration (CUDA 12.8)</li><li>Inpainting, outpainting, upscaling workflows</li><li>Active community with thousands of custom nodes</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>8GB+ RAM recommended (16GB+ for large models)</li><li>NVIDIA GPU with 6GB+ VRAM recommended</li><li>Port 30340 available</li><li>Disk space for models (varies by model)</li></ul>
+      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
+      com.docker.extension.screenshots: ""
+      dev.chainguard.image.title: ComfyUI
+      org.opencontainers.image.authors: Sulla Labs
+      org.opencontainers.image.created: 2026-03-01T00:00:00Z
+      org.opencontainers.image.description: ComfyUI - Node-based Stable Diffusion GUI for AI image generation
+      org.opencontainers.image.licenses: ""
+      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
+      org.opencontainers.image.title: ComfyUI
+      org.opencontainers.image.url: https://github.com/comfyanonymous/ComfyUI
+      org.opencontainers.image.vendor: Sulla Labs
+      org.opencontainers.image.version: 1.0.0
+    title: ComfyUI
+    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/comfyui/comfyui.png
+    publisher: Sulla Labs
+    short_description: ComfyUI - Node-based Stable Diffusion GUI for powerful AI image generation workflows.
+    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/comfyui/installation.yaml
