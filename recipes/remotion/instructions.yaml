@@ -1,0 +1,23 @@
+id: remotion
+name: Remotion
+description: Make videos programmatically with React — self-hosted Studio for composing, previewing, and rendering MP4 videos with code
+icon: remotion.svg
+version: "2026.02"
+category: media
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup: []
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "docker compose -f ${COMPOSE_FILE} pull && docker compose -f ${COMPOSE_FILE} up -d"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+extraUrls:
+  - label: "Remotion Studio"
+    url: "http://localhost:30310"
