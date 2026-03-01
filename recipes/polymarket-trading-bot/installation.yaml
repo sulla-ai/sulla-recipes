@@ -1,0 +1,31 @@
+id: polymarket-trading-bot
+name: Polymarket Trading Bot
+description: Automated Polymarket prediction market trading bot with 7 strategies and real-time dashboard
+icon: polymarket-trading-bot.png
+version: "1.0.0"
+category: finance
+
+compose:
+  composeFile: "docker-compose.yml"
+
+setup:
+  - type: git-clone
+    url: "https://github.com/dylanpersonguy/Polymarket-Trading-Bot.git"
+    dest: "${APP_DIR}"
+
+commands:
+  start: "docker compose -f ${COMPOSE_FILE} up -d --build"
+  stop: "docker compose -f ${COMPOSE_FILE} down"
+  restart: "docker compose -f ${COMPOSE_FILE} restart"
+  status: "docker compose -f ${COMPOSE_FILE} ps"
+  update: "cd ${APP_DIR} && git pull && docker compose -f ${COMPOSE_FILE} up -d --build"
+  logs: "docker compose -f ${COMPOSE_FILE} logs --tail=100"
+
+openInBrowser: true
+
+extraUrls:
+  - label: "Open Dashboard"
+    url: "http://localhost:30330/dashboard"
+
+env:
+  ENABLE_LIVE_TRADING: "false"

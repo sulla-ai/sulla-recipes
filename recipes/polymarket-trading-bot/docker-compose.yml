@@ -1,0 +1,23 @@
+services:
+  polymarket-bot:
+    image: byrdziak/polymarket-trading-bot:latest
+    container_name: polymarket-bot
+    restart: unless-stopped
+    ports:
+      - "30330:3000"
+    environment:
+      NODE_ENV: "production"
+      ENABLE_LIVE_TRADING: "${ENABLE_LIVE_TRADING:-false}"
+    volumes:
+      - polymarket-data:/app/data
+      - polymarket-config:/app/config
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/dashboard || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  polymarket-data:
+  polymarket-config:
