@@ -1,9 +1,9 @@
-id: comfyui
-name: ComfyUI
-description: Powerful node-based Stable Diffusion GUI for AI image generation
-icon: comfyui.png
+id: mixpost
+name: Mixpost
+description: Self-hosted social media management platform — create, schedule, publish, and manage content
+icon: mixpost.svg
 version: "1.0.0"
-category: ai-tools
+category: marketing
 
 compose:
   composeFile: "docker-compose.yml"
@@ -21,7 +21,7 @@ commands:
 openInBrowser: true
 
 extraUrls:
-  - label: "Open ComfyUI"
-    url: "http://localhost:30340"
+  - label: "Open Mixpost"
+    url: "http://localhost:30350"
 
 env: {}
