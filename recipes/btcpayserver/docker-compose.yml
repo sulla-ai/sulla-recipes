@@ -53,7 +53,7 @@ services:
       - nbxplorer-data:/datadir
 
   bitcoind:
-    image: btcpayserver/bitcoin:27.0
+    image: btcpayserver/bitcoin:latest
     container_name: btcpay-bitcoind
     restart: unless-stopped
     environment:
