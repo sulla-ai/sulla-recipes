@@ -532,6 +532,34 @@ plugins:
     short_description: Add 1,400+ integrations to your agent. - Open-source developer platform for scripts, workflows & UIs. Self-hosted Retool + Airflow alternative.
     installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/windmill/installation.yaml
 
+  - slug: docker.io/sulla-ai/btcpayserver
+    version: 2.0.0
+    containerd_compatible: true
+    labels:
+      com.docker.desktop.extension.api.version: 0.0.1
+      com.docker.extension.icon: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/btcpayserver/btcpayserver.png
+      com.docker.extension.additional-urls: ""
+      com.docker.extension.categories: finance,payments,bitcoin,cryptocurrency
+      com.docker.extension.changelog: <h3>Recent Updates</h3><h4>2.0.0</h4><ul><li>Full Docker Compose recipe with Bitcoin Core, NBXplorer, and PostgreSQL</li><li>Regtest mode by default for easy local development</li><li>Switch to mainnet/testnet via environment variable</li></ul>
+      com.docker.extension.detailed-description: Accept Bitcoin payments with no fees, no middlemen, and complete privacy.<br><br><strong>BTCPay Server</strong> is a self-hosted, open-source cryptocurrency payment processor. It is secure, private, censorship-resistant, and free — the most widely used self-hosted Bitcoin payment gateway in the world.<br><br><strong>Features:</strong><ul><li>Accept Bitcoin on-chain and Lightning Network payments</li><li>No fees, no intermediaries — peer-to-peer</li><li>Built-in wallet with full coin control</li><li>Point-of-sale app for in-person payments</li><li>Crowdfunding and payment button support</li><li>WooCommerce, Shopify, and API integrations</li><li>Invoice management and payment requests</li><li>Multi-store and multi-user support</li><li>Automatic currency conversion and rates</li><li>Beautiful admin dashboard with reporting</li></ul><br><strong>Requirements:</strong><ul><li>Sulla Desktop v1.0.0+</li><li>4GB+ RAM recommended</li><li>Port 30320 available</li><li>~1GB disk for pruned Bitcoin node</li></ul>
+      com.docker.extension.publisher-url: https://github.com/sulla-ai/sulla-recipes
+      com.docker.extension.screenshots: ""
+      dev.chainguard.image.title: BTCPay Server
+      org.opencontainers.image.authors: Sulla Labs
+      org.opencontainers.image.created: 2026-03-01T00:00:00Z
+      org.opencontainers.image.description: BTCPay Server - Self-hosted Bitcoin payment processor with no fees and complete privacy
+      org.opencontainers.image.licenses: ""
+      org.opencontainers.image.source: https://github.com/sulla-ai/sulla-recipes
+      org.opencontainers.image.title: BTCPay Server
+      org.opencontainers.image.url: https://hub.docker.com/r/sulla-ai/btcpayserver
+      org.opencontainers.image.vendor: Sulla Labs
+      org.opencontainers.image.version: 2.0.0
+    title: BTCPay Server
+    logo: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/btcpayserver/btcpayserver.png
+    publisher: Sulla Labs
+    short_description: BTCPay Server - Self-hosted Bitcoin payment processor. Accept payments with no fees, no middlemen.
+    installable: https://raw.githubusercontent.com/sulla-ai/sulla-recipes/refs/heads/main/recipes/btcpayserver/installation.yaml
+
   - slug: docker.io/sulla-ai/remotion
     version: 2026.02
     containerd_compatible: true

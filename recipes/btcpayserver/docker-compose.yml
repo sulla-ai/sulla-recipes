@@ -1,0 +1,110 @@
+services:
+  btcpayserver:
+    image: btcpayserver/btcpayserver:latest
+    container_name: btcpayserver
+    restart: unless-stopped
+    ports:
+      - "30320:49392"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      nbxplorer:
+        condition: service_started
+    environment:
+      BTCPAY_PROTOCOL: "http"
+      BTCPAY_HOST: "localhost:30320"
+      BTCPAY_POSTGRES: "User ID=btcpay;Password=btcpay;Host=postgres;Port=5432;Database=btcpay"
+      BTCPAY_NETWORK: "${BTCPAY_NETWORK:-regtest}"
+      BTCPAY_BIND: "0.0.0.0:49392"
+      BTCPAY_NBXEXPLORERCOOKIEFILE: ""
+      BTCPAY_NBXPLORERURL: "http://nbxplorer:32838"
+      BTCPAY_BTCEXTERNALLNDGRPC: ""
+      BTCPAY_EXPLORERPOSTGRES: "User ID=btcpay;Password=btcpay;Host=postgres;Port=5432;Database=nbxplorer"
+    volumes:
+      - btcpay-data:/datadir
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:49392/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  nbxplorer:
+    image: nicolasdorier/nbxplorer:latest
+    container_name: btcpay-nbxplorer
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      bitcoind:
+        condition: service_healthy
+    environment:
+      NBXPLORER_NETWORK: "${BTCPAY_NETWORK:-regtest}"
+      NBXPLORER_BIND: "0.0.0.0:32838"
+      NBXPLORER_SIGNALFILESDIR: "/datadir"
+      NBXPLORER_POSTGRES: "User ID=btcpay;Password=btcpay;Host=postgres;Port=5432;Database=nbxplorer"
+      NBXPLORER_AUTOMIGRATE: "1"
+      NBXPLORER_NOAUTH: "1"
+      NBXPLORER_BTCRPCURL: "http://bitcoind:43782/"
+      NBXPLORER_BTCRPCUSER: "btcpay"
+      NBXPLORER_BTCRPCPASSWORD: "btcpay"
+      NBXPLORER_BTCNODEENDPOINT: "bitcoind:39388"
+    volumes:
+      - nbxplorer-data:/datadir
+
+  bitcoind:
+    image: btcpayserver/bitcoin:27.0
+    container_name: btcpay-bitcoind
+    restart: unless-stopped
+    environment:
+      BITCOIN_NETWORK: "${BTCPAY_NETWORK:-regtest}"
+      BITCOIN_WALLETDIR: "/walletdata"
+      BITCOIN_EXTRA_ARGS: |
+        server=1
+        rpcuser=btcpay
+        rpcpassword=btcpay
+        rpcport=43782
+        rpcbind=0.0.0.0:43782
+        rpcallowip=0.0.0.0/0
+        port=39388
+        whitelist=0.0.0.0/0
+        zmqpubrawblock=tcp://0.0.0.0:28332
+        zmqpubrawtx=tcp://0.0.0.0:28333
+        prune=550
+        txindex=0
+    ports:
+      - "30321:43782"
+    volumes:
+      - bitcoin-data:/data
+      - bitcoin-wallet-data:/walletdata
+    healthcheck:
+      test: ["CMD-SHELL", "bitcoin-cli -rpcuser=btcpay -rpcpassword=btcpay -rpcport=43782 getblockchaininfo || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: btcpay-postgres
+    restart: unless-stopped
+    ports:
+      - "30322:5432"
+    environment:
+      POSTGRES_USER: btcpay
+      POSTGRES_PASSWORD: btcpay
+      POSTGRES_DB: btcpay
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U btcpay"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  btcpay-data:
+  nbxplorer-data:
+  bitcoin-data:
+  bitcoin-wallet-data:
+  postgres-data:
